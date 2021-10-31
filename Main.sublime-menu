@@ -6,10 +6,12 @@
 	 "children":
 		[
 			{ "caption": "-", "id": "packagecommands" },
-			{ "command": "autoittidy", "caption": "AutoIt - Tidy", "mnemonic": "T"},
-			{ "command": "autoitincludehelper", "caption": "AutoIt - IncludeHelper", "mnemonic": "I"},    
-			{ "command": "autoitinfo", "caption": "AutoIt - Info", "mnemonic": "f"},
-			{ "command": "autoithelp", "caption": "AutoIt - Help", "mnemonic": "H"}
+			{ "caption": "AutoIt", "mnemonic": "I", "children": [
+				{ "command": "autoittidy", "caption": "AutoIt - Tidy", "mnemonic": "T"},
+				{ "command": "autoitincludehelper", "caption": "AutoIt - Include Helper", "mnemonic": "I"},
+				{ "command": "autoitwindowinfo", "caption": "AutoIt - Window Info", "mnemonic": "f"},
+				{ "command": "autoithelp", "caption": "AutoIt - Help", "mnemonic": "H"},
+			]},
 		]
 	},
 	{
@@ -29,7 +31,7 @@
                         [
 							{
 								"command": "open_file",
-								"args": {"file": "${packages}/AutoItScript/AutoIt.sublime-settings"},
+								"args": {"file": "${packages}/AutoItPlysSublime/AutoIt.sublime-settings"},
 								"caption": "AutoIt Settings - Default"
 							},
 							{

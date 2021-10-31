@@ -4,12 +4,12 @@
         "command": "autoittidy"
     },
     {
-        "caption": "AutoIt - IncludeHelper",
+        "caption": "AutoIt - Include Helper",
         "command": "autoitincludehelper"
     },
     {
-        "caption": "AutoIt - Info",
-        "command": "autoitinfo"
+        "caption": "AutoIt - Window Info",
+        "command": "autoitwindowinfo"
     },
     {
         "caption": "AutoIt - Help",
