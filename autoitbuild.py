@@ -129,7 +129,7 @@ class autoitgetpaths(sublime_plugin.WindowCommand):
 
 		import json
 		default_settings_path = sublime.packages_path() + \
-			"\\SublimeAutoItScript\\AutoIt.sublime-settings"
+			"\\AutoItPlysSublime\\AutoIt.sublime-settings"
 		with open(default_settings_path) as f:
 			settings = json.load(f)
 		if not settings.get("AutoItExePath"):

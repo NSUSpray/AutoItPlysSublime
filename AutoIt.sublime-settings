@@ -4,5 +4,5 @@
 	"TidyExePath": "",
 	"IncludeHelperAU3Path": "{PACKAGE_PATH}\\AutoItPlysSublime\\Include_Helper.au3",    
 	"AutoItInfoPath": "",
-	"AutoItHelpPath": "",
+	"AutoItHelpPath": ""
 }

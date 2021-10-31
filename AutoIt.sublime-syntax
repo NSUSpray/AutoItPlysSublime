@@ -192,7 +192,7 @@ contexts:
       scope: constant.numeric.autoit
     - match: "[-+*/&]?="
       scope: keyword.operator.assignment.autoit
-    - match: "\+|-|\*|\^|/|&|\?|:"
+    - match: '\+|-|\*|\^|/|&|\?|:'
       scope: keyword.operator.arithmetic.autoit
     - match: "<|>|<>|[<>=]="
       scope: keyword.operator.comparison.autoit
