@@ -7,7 +7,7 @@
 		<string>au3</string>
 	</array>
 	<key>name</key>
-	<string>AutoIt Script</string>
+	<string>AutoIt</string>
 	<key>patterns</key>
 	<array>
 		<dict>

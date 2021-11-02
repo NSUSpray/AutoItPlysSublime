@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
-name: AutoIt Script
+name: AutoIt
 file_extensions:
   - au3
 scope: source.autoit

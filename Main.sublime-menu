@@ -7,10 +7,11 @@
 		[
 			{ "caption": "-", "id": "packagecommands" },
 			{ "caption": "AutoIt", "mnemonic": "I", "children": [
-				{ "command": "autoittidy", "caption": "AutoIt - Tidy", "mnemonic": "T"},
-				{ "command": "autoitincludehelper", "caption": "AutoIt - Include Helper", "mnemonic": "I"},
-				{ "command": "autoitwindowinfo", "caption": "AutoIt - Window Info", "mnemonic": "f"},
-				{ "command": "autoithelp", "caption": "AutoIt - Help", "mnemonic": "H"},
+				{ "command": "autoitincludehelper", "caption": "Include Helper", "mnemonic": "I" },
+				{ "command": "autoitwindowinfo", "caption": "Window Info", "mnemonic": "f" },
+				{ "command": "autoithelp", "caption": "Help", "mnemonic": "H" },
+				{ "caption": "-" },
+				{ "command": "autoittidy", "caption": "SciTE4AutoIt3 - Tidy", "mnemonic": "T" }
 			]},
 		]
 	},
@@ -25,19 +26,25 @@
 				"id": "package-settings",
 				"children":
 				[
-                    {
-                        "caption": "AutoIt",
-                        "children":
-                        [
+					{
+						"caption": "AutoIt",
+						"children":
+						[
 							{
-								"command": "open_file",
-								"args": {"file": "${packages}/AutoItPlysSublime/AutoIt.sublime-settings"},
-								"caption": "AutoIt Settings - Default"
+								"command": "edit_settings",
+								"args": {
+									"base_file": "${packages}/AutoItPlysSublime/AutoIt.sublime-settings",
+									"default": "{\n\t$0\n}\n"
+								},
+								"caption": "Settings"
 							},
 							{
-								"command": "open_file",
-								"args": {"file": "${packages}/User/AutoIt.sublime-settings"},
-								"caption": "AutoIt Settings - User"
+								"command": "edit_settings",
+								"args": {
+									"base_file": "${packages}/AutoItPlysSublime/Default ($platform).sublime-keymap",
+									"default": "[\n\t$0\n]\n"
+								},
+								"caption": "Key Bindings"
 							}
 						]
 					}
