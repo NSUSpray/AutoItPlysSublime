@@ -6,7 +6,7 @@
 	 "children":
 		[
 			{ "caption": "-", "id": "packagecommands" },
-			{ "caption": "AutoIt", "mnemonic": "I", "children": [
+			{ "caption": "AutoIt Plys", "mnemonic": "I", "children": [
 				{ "command": "autoitincludehelper", "caption": "Include Helper", "mnemonic": "I" },
 				{ "command": "autoitwindowinfo", "caption": "Window Info", "mnemonic": "f" },
 				{ "command": "autoithelp", "caption": "Help", "mnemonic": "H" },
@@ -27,7 +27,7 @@
 				"children":
 				[
 					{
-						"caption": "AutoIt",
+						"caption": "AutoIt Plys",
 						"children":
 						[
 							{

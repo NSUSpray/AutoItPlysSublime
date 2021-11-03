@@ -127,45 +127,46 @@ class autoitgetpaths(sublime_plugin.WindowCommand):
 		if sublime.load_settings("AutoIt.sublime-settings").get("Status") == "installed":
 			return
 
-		import winreg
-		def get_au3_exe_folder(bitness):
-			registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, \
-				r"SOFTWARE\AutoIt v3\AutoIt", 0, \
-				winreg.KEY_READ | winreg.KEY_WOW64_32KEY)
-			value, regtype = winreg.QueryValueEx(registry_key, "InstallDir")
-			winreg.CloseKey(registry_key)
-			return value
 		try:
-			au3_exe_folder = get_au3_exe_folder(winreg.KEY_WOW64_32KEY)
+			autoit_exe_folder = get_autoit_exe_folder()
 		except WindowsError as e:
-			try:
-				au3_exe_folder = get_au3_exe_folder(winreg.KEY_WOW64_64KEY)
-			except WindowsError as e:
-				sublime.active_window().run_command("show_panel", {"panel": "console"})
-				print("------------ ERROR: Python exception trying to run following command ------------")
-				print("Error " + str(e))
-				return
+			sublime.active_window().run_command("show_panel", {"panel": "console"})
+			print("------------ ERROR: Python exception trying to run following command ------------")
+			print("Error " + str(e))
+			return
 
 		import json
 		default_settings_path = sublime.packages_path() + \
 			"\\AutoItPlysSublime\\AutoIt.sublime-settings"
 		with open(default_settings_path) as f:
 			settings = json.load(f)
-		settings["AutoItExePath"] = au3_exe_folder + "\\AutoIt3.exe"
+		settings["AutoItExePath"] = autoit_exe_folder + "\\AutoIt3.exe"
 		settings["AutoItCompilerPath"] = \
-			au3_exe_folder + "\\Aut2Exe\\Aut2exe.exe"
-		settings["TidyExePath"] = au3_exe_folder + "\\SciTE\\Tidy\\Tidy.exe"
+			autoit_exe_folder + "\\Aut2Exe\\Aut2exe.exe"
+		settings["TidyExePath"] = autoit_exe_folder + "\\SciTE\\Tidy\\Tidy.exe"
 		import platform
 		is_os_64bit = platform.machine().endswith('64')
 		suffix = "_x64" if is_os_64bit else ""
 		settings["AutoItInfoPath"] = \
-			au3_exe_folder + "\\Au3Info" + suffix + ".exe"
-		settings["AutoItHelpPath"] = au3_exe_folder + "\\AutoIt3Help.exe"
+			autoit_exe_folder + "\\Au3Info" + suffix + ".exe"
+		settings["AutoItHelpPath"] = autoit_exe_folder + "\\AutoIt3Help.exe"
 		settings["Status"] = "installed"
 		with open(default_settings_path, "w") as f:
 			json.dump(settings, f, indent="\t")
-		# import stat
-		# os.chmod(default_settings_path, stat.S_IREAD)
 
 	def run(self):
 		pass
+
+def get_autoit_exe_folder():
+		import winreg
+		def get_in_branch(branch_bitness):
+			registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, \
+				r"SOFTWARE\AutoIt v3\AutoIt", 0, \
+				winreg.KEY_READ | branch_bitness)
+			value, regtype = winreg.QueryValueEx(registry_key, "InstallDir")
+			winreg.CloseKey(registry_key)
+			return value
+		try:
+			return get_in_branch(winreg.KEY_WOW64_32KEY)
+		except WindowsError:
+			return get_in_branch(winreg.KEY_WOW64_64KEY)

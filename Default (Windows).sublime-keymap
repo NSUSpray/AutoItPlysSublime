@@ -2,7 +2,10 @@
 	{
 		"keys": ["f1"], "command": "autoitcontexthelp",
 		"context": [
-			{"key": "selector", "operator": "equal", "operand" : "source.autoit"}
+			{
+				"key": "selector", "operator": "equal",
+				"operand" : "source.autoit"
+			}
 		]
 	}
 ]

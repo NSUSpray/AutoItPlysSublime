@@ -24,7 +24,7 @@ If you have the default Sublime keybindings intact, then:
 * <kbd>F1</kbd> will take you to AutoIt Help for word under cursor.
 
 ## Advanced Configuration
-For the build systems and Tidy command, if you have a non-default installation you will need to set your specific path to AutoIt3.exe, Aut2Exe.exe, and Tidy.exe in a file named AutoIt.sublime-settings in your User folder. You can access the settings file from Menu `Preferences > Package Settings > AutoIt > Settings`. You should make a copy of left side panel at right side panel.
+For the build systems and Tidy command, if you have a non-default installation you will need to set your specific path to AutoIt3.exe, Aut2Exe.exe, and Tidy.exe in a file named AutoIt.sublime-settings in your User folder. You can access the settings file from Menu `Preferences > Package Settings > AutoIt Plys > Settings`. You should make a copy of left side panel at right side panel.
 
 ## Credits
 * Syntax rules: http://sublime-text-community-packages.googlecode.com/svn/pages/AutoIt.html
