@@ -1,0 +1,49 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: AutoIt Plys
+file_extensions:
+  - aup
+scope: source.autoit-plys
+extends: AutoIt.sublime-syntax
+contexts:
+  main:
+    - include: AutoIt.sublime-syntax
+    - match: |-
+        (?xi) \b
+        (activate|active|add|addcr|binsearch|changedir|coldelete|colinsert
+        |combinations|concat|copy|createlink|createshortcut|display|echo
+        |extract|findall|firstfile|flash|flush|format|getattrib|getcaretpos
+        |getclasslist|getclientsize|getencoding|getlongname|getprocess
+        |getshortcut|getshortname|getsize|gettime|gettitle|getversion|insert
+        |instr|isalnum|isalpha|isascii|isdigit|islower|isspace|isupper|isxdigit
+        |kill|left|len|list|lower|max|maxindex|menuselectitem|mid|min
+        |minimizeall|minimizeallundo|minindex|nextfile|open|opendialog|permute
+        |pop|push|read|readline|readtoarray|recycle|recycleempty|refind|replace
+        |rereplace|right|savedialog|search|selectfolder|setattrib|setend
+        |setontop|setpos|settime|settitle|settrans|shuffle|sort|split|stripcr
+        |stripws|struct|structget|structgetptr|structgetsize|structset|swap
+        |toclip|tohist|transpose|trim|trimleft|trimright|unique|upper|wait
+        |waitactive|waitclose|waitnotactive|write|writeline)\b
+      scope: support.function.autoit
+    - match: |-
+        '(?xi) @\b
+        (activewin|casesense|chrsplit|cmdline|endnotstart|entiresplit
+        |nocasesense|nocasesensebasic|nocount|rearray|rearrayfull|rearrayglobal
+        |rearrayglobalfull|remach|stripall|stripleading|stripspaces
+        |striptrailing|ucs2|utf16)\b'
+      scope: support.type.macro.autoit
+    - match: '^\s*#(?i:import)\s+((["''<]).*(["''>]))'
+      scope: keyword.control.import.autoit
+      captures:
+        1: string.parameter.import.autoit
+        2: punctuation.definition.string.begin.import.autoit
+        3: punctuation.definition.string.end.import.autoit
+    - match: (?i)#\bplys\b(.*)$
+      scope: keyword.control.directives.autoit
+      captures:
+        1: string.parameter.directives.autoit
+    - match: \.=
+      scope: keyword.operator.assignment.autoit
+    - match: \.
+      scope: keyword.operator.arithmetic.autoit

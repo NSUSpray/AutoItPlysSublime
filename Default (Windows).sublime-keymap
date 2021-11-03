@@ -4,7 +4,7 @@
 		"context": [
 			{
 				"key": "selector", "operator": "equal",
-				"operand" : "source.autoit"
+				"operand" : "source.autoit, source.autoit-plys"
 			}
 		]
 	}

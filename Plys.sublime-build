@@ -1,0 +1,10 @@
+{
+	"target": "plysbuild",
+	"selector": "source.autoit-plys",
+	"variants": [
+		{
+			"name": "Translate to AutoIt",
+			"target": "plystranslate"
+		}
+	]
+}
