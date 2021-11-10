@@ -1,5 +1,5 @@
 # AutoItPlysSublime – Package for Sublime Text
-AutoIt language and Plys dialect package for Sublime Text including syntax highlighting, comments toggling, auto-completions, build systems for run and compile, context help, Tidy and Include Helper command.
+[AutoIt language](https://www.autoitscript.com/site/autoit/) and [Plys dialect](https://github.com/NSUSpray/Plys) package for [Sublime Text](https://www.sublimetext.com/) including syntax highlighting, comments toggling, auto-completions, build systems for run and compile, context help, Tidy and Include Helper command.
 
 ## Package Installation
 * Manual method (without autoupdate):
@@ -15,12 +15,12 @@ AutoIt language and Plys dialect package for Sublime Text including syntax highl
 
 ## Key Bindings
 If you have the default Sublime keybindings intact, then:
-* <kbd>Ctrl+B</kbd> will run the current file (with AutoIt3.exe)
-* <kbd>Ctrl+Shift+B</kbd> will compile the current file (with Aut2Exe.exe)
+* <kbd>Ctrl+B</kbd> will run/compile/translate the current file (with AutoIt3.exe, Aut2Exe.exe or plys.au3).
+* <kbd>Ctrl+Shift+B</kbd> will change the build mode (between run/compile/translate).
 * <kbd>Alt+T</kbd><kbd>I</kbd><kbd>I</kbd> will invoke Include Helper on the current file.
 * <kbd>Alt+T</kbd><kbd>I</kbd><kbd>F</kbd> will invoke AutoIt Window Info.
 * <kbd>Alt+T</kbd><kbd>I</kbd><kbd>H</kbd> will invoke AutoIt Help.
-* <kbd>Alt+T</kbd><kbd>I</kbd><kbd>T</kbd> will invoke Tidy on the current file (only if SciTE4AutoIt is installed).
+* <kbd>Alt+T</kbd><kbd>I</kbd><kbd>T</kbd> will invoke Tidy on the current file (if it’s installed).
 * <kbd>F1</kbd> will take you to AutoIt Help for word under cursor.
 
 ## Advanced Configuration

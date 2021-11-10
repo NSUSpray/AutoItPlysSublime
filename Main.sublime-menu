@@ -11,7 +11,7 @@
 				{ "command": "autoitwindowinfo", "caption": "Window Info", "mnemonic": "f" },
 				{ "command": "autoithelp", "caption": "Help", "mnemonic": "H" },
 				{ "caption": "-" },
-				{ "command": "autoittidy", "caption": "SciTE4AutoIt3 - Tidy", "mnemonic": "T" }
+				{ "command": "autoittidy", "caption": "Tidy", "mnemonic": "T" }
 			]},
 		]
 	},
