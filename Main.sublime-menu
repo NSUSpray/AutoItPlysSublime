@@ -10,6 +10,7 @@
 				{ "command": "autoitincludehelper", "caption": "Include Helper", "mnemonic": "I" },
 				{ "command": "autoitwindowinfo", "caption": "Window Info", "mnemonic": "f" },
 				{ "command": "autoithelp", "caption": "Help", "mnemonic": "H" },
+				{ "command": "plyshelp", "caption": "Plys Help", "mnemonic": "P" },
 				{ "caption": "-" },
 				{ "command": "autoittidy", "caption": "Tidy", "mnemonic": "T" }
 			]},

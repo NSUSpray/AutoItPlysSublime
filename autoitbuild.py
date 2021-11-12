@@ -94,19 +94,22 @@ class autoitwindowinfo(sublime_plugin.WindowCommand):
 
 class autoithelp(sublime_plugin.WindowCommand):
 	def run(self):
-		autoit_help_path = \
+		self.autoit_help_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("AutoItHelpPath")
 
 		try:
-			os.startfile(autoit_help_path)
+			subprocess.Popen(self.make_args())
 		except Exception as e:
 			sublime.active_window().run_command("show_panel", {"panel": "console"})
 			print("------------ ERROR: Python exception trying to run following command ------------")
 			print("Error " + str(e))
 
+	def make_args(self):
+		return [self.autoit_help_path]
+
 class autoitcontexthelp(sublime_plugin.TextCommand):
 	def run(self, edit):
-		autoit_help_path = \
+		self.autoit_help_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("AutoItHelpPath")
 		for region in self.view.sel():
 			location = False
@@ -115,11 +118,14 @@ class autoitcontexthelp(sublime_plugin.TextCommand):
 				query = self.view.substr(location)
 
 				try:
-					subprocess.Popen([autoit_help_path, query])
+					subprocess.Popen(self.make_args(query))
 				except Exception as e:
 					sublime.active_window().run_command("show_panel", {"panel": "console"})
 					print("------------ ERROR: Python exception trying to run following command ------------")
 					print("Error " + str(e))
+
+	def make_args(self, query):
+		return [self.autoit_help_path, query]
 
 class autoitgetpaths(sublime_plugin.WindowCommand):
 	def __init__(self, window):
