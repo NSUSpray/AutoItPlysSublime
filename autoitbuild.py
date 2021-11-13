@@ -10,7 +10,9 @@ class autoitbuild(sublime_plugin.WindowCommand):
 		autoit_exe_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("AutoItExePath")
 		cmd = [autoit_exe_path, "/ErrorStdOut", filepath]
-		self.window.run_command("exec", {"cmd": cmd})
+		self.window.run_command("exec",
+			{ "cmd": cmd, "file_regex": r'[^"]*"?([a-zA-Z]:\\.+?\.au3)"? \(([0-9]*)()\) : ==> (.*?)\.: ?$' }
+		)
 
 class autoitcompile(sublime_plugin.WindowCommand):
 	def run(self):

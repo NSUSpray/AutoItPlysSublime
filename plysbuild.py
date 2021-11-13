@@ -9,7 +9,9 @@ class plysbuild(sublime_plugin.WindowCommand):
 		# plys_path = re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
 		plys_path = settings.get("PlysAU3Path")
 		cmd = [autoit_exe_path, plys_path, "/ErrorStdOut", filepath]
-		self.window.run_command("exec", {"cmd": cmd})
+		self.window.run_command("exec",
+			{ "cmd": cmd, "file_regex": r'[^"]*"?([a-zA-Z]:\\.+?\.aup)"? \(([0-9]*)()\) : ==> (.*)$' }
+		)
 
 class plystranslate(sublime_plugin.WindowCommand):
 	def run(self):

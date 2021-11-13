@@ -17,10 +17,11 @@
 If you have the default Sublime keybindings intact, then:
 * <kbd>Ctrl+B</kbd> will run/compile/translate the current file (with AutoIt3.exe, Aut2Exe.exe or plys.au3).
 * <kbd>Ctrl+Shift+B</kbd> will change the build mode (between run/compile/translate).
-* <kbd>Alt+T</kbd><kbd>I</kbd><kbd>I</kbd> will invoke Include Helper on the current file.
-* <kbd>Alt+T</kbd><kbd>I</kbd><kbd>F</kbd> will invoke AutoIt Window Info.
-* <kbd>Alt+T</kbd><kbd>I</kbd><kbd>H</kbd> will invoke AutoIt Help.
-* <kbd>Alt+T</kbd><kbd>I</kbd><kbd>T</kbd> will invoke Tidy on the current file (if it’s installed).
+* <kbd>Alt</kbd><kbd>T</kbd><kbd>I</kbd><kbd>I</kbd> will invoke Include Helper on the current file.
+* <kbd>Alt</kbd><kbd>T</kbd><kbd>I</kbd><kbd>F</kbd> will invoke AutoIt Window Info.
+* <kbd>Alt</kbd><kbd>T</kbd><kbd>I</kbd><kbd>H</kbd> will invoke AutoIt Help.
+* <kbd>Alt</kbd><kbd>T</kbd><kbd>I</kbd><kbd>P</kbd> will invoke Plys Help.
+* <kbd>Alt</kbd><kbd>T</kbd><kbd>I</kbd><kbd>T</kbd> will invoke Tidy on the current file (if it’s installed).
 * <kbd>F1</kbd> will take you to AutoIt Help for word under cursor.
 
 ## Advanced Configuration
