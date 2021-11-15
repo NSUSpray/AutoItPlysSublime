@@ -13,13 +13,66 @@
 		<dict>
 			<key>match</key>
 			<string>(?xi) \b
-(and|byref|case|const|continuecase|continueloop|dim|do|else
-|elseif|endfunc|endif|endselect|endswitch|endwith|enum|exit|exitloop|for
-|func|global|if|in|local|next|not|or|redim|return|select|static|step
-|switch|then|to|until|volatile|wend|while|with)\b
+(continuecase|continueloop|do|endwith|exit|exitloop|for|in|next
+|return|step|to|until|wend|while|with)\b
 </string>
 			<key>name</key>
 			<string>keyword.control.autoit</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(case|else|elseif|endif|endselect|endswitch|if|select|switch|then)\b
+</string>
+			<key>name</key>
+			<string>keyword.control.conditional.autoit</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\bdefault\b
+</string>
+			<key>name</key>
+			<string>keyword.other.autoit</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(dim|global|local)\b
+</string>
+			<key>name</key>
+			<string>storage.type.autoit</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\benum\b
+</string>
+			<key>name</key>
+			<string>storage.type.enum.autoit keyword.declaration.enum.autoit</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.declaration.function.autoit</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.autoit</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i)^\s*(?:endfunc|(func)\s+([a-zA-Z]\w*))\b
+</string>
+			<key>name</key>
+			<string>storage.type.function.autoit keyword.declaration.function.autoit</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(byref|const|static|volatile)\b
+</string>
+			<key>name</key>
+			<string>storage.modifier.autoit</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -87,7 +140,7 @@
 |_guictrltab_activatetab|_guictrltab_clicktab|_guictrltab_create|_guictrltab_deleteallitems|_guictrltab_deleteitem|_guictrltab_deselectall|_guictrltab_destroy|_guictrltab_findtab|_guictrltab_getcurfocus|_guictrltab_getcursel|_guictrltab_getdisplayrect|_guictrltab_getdisplayrectex|_guictrltab_getextendedstyle|_guictrltab_getimagelist|_guictrltab_getitem|_guictrltab_getitemcount|_guictrltab_getitemimage|_guictrltab_getitemparam|_guictrltab_getitemrect|_guictrltab_getitemrectex|_guictrltab_getitemstate|_guictrltab_getitemtext|_guictrltab_getrowcount|_guictrltab_gettooltips|_guictrltab_getunicodeformat|_guictrltab_highlightitem|_guictrltab_hittest|_guictrltab_insertitem|_guictrltab_removeimage|_guictrltab_setcurfocus|_guictrltab_setcursel|_guictrltab_setextendedstyle|_guictrltab_setimagelist|_guictrltab_setitem|_guictrltab_setitemimage|_guictrltab_setitemparam|_guictrltab_setitemsize|_guictrltab_setitemstate|_guictrltab_setitemtext|_guictrltab_setmintabwidth|_guictrltab_setpadding|_guictrltab_settooltips|_guictrltab_setunicodeformat|_guictrltoolbar_addbitmap|_guictrltoolbar_addbutton|_guictrltoolbar_addbuttonsep|_guictrltoolbar_addstring|_guictrltoolbar_buttoncount|_guictrltoolbar_checkbutton|_guictrltoolbar_clickaccel|_guictrltoolbar_clickbutton|_guictrltoolbar_clickindex|_guictrltoolbar_commandtoindex|_guictrltoolbar_create|_guictrltoolbar_customize|_guictrltoolbar_deletebutton|_guictrltoolbar_destroy|_guictrltoolbar_enablebutton|_guictrltoolbar_findtoolbar|_guictrltoolbar_getanchorhighlight|_guictrltoolbar_getbitmapflags|_guictrltoolbar_getbuttonbitmap|_guictrltoolbar_getbuttoninfo|_guictrltoolbar_getbuttoninfoex|_guictrltoolbar_getbuttonparam|_guictrltoolbar_getbuttonrect|_guictrltoolbar_getbuttonrectex|_guictrltoolbar_getbuttonsize|_guictrltoolbar_getbuttonstate|_guictrltoolbar_getbuttonstyle|_guictrltoolbar_getbuttontext|_guictrltoolbar_getcolorscheme|_guictrltoolbar_getdisabledimagelist|_guictrltoolbar_getextendedstyle|_guictrltoolbar_gethotimagelist|_guictrltoolbar_gethotitem|_guictrltoolbar_getimagelist|_guictrltoolbar_getinsertmark|_guictrltoolbar_getinsertmarkcolor|_guictrltoolbar_getmaxsize|_guictrltoolbar_getmetrics|_guictrltoolbar_getpadding|_guictrltoolbar_getrows|_guictrltoolbar_getstring|_guictrltoolbar_getstyle|_guictrltoolbar_getstylealtdrag|_guictrltoolbar_getstylecustomerase|_guictrltoolbar_getstyleflat|_guictrltoolbar_getstylelist|_guictrltoolbar_getstyleregisterdrop|_guictrltoolbar_getstyletooltips|_guictrltoolbar_getstyletransparent|_guictrltoolbar_getstylewrapable|_guictrltoolbar_gettextrows|_guictrltoolbar_gettooltips|_guictrltoolbar_getunicodeformat|_guictrltoolbar_hidebutton|_guictrltoolbar_highlightbutton|_guictrltoolbar_hittest|_guictrltoolbar_indextocommand|_guictrltoolbar_insertbutton|_guictrltoolbar_insertmarkhittest|_guictrltoolbar_isbuttonchecked|_guictrltoolbar_isbuttonenabled|_guictrltoolbar_isbuttonhidden|_guictrltoolbar_isbuttonhighlighted|_guictrltoolbar_isbuttonindeterminate|_guictrltoolbar_isbuttonpressed|_guictrltoolbar_loadbitmap|_guictrltoolbar_loadimages|_guictrltoolbar_mapaccelerator|_guictrltoolbar_movebutton|_guictrltoolbar_pressbutton|_guictrltoolbar_setanchorhighlight|_guictrltoolbar_setbitmapsize|_guictrltoolbar_setbuttonbitmap|_guictrltoolbar_setbuttoninfo|_guictrltoolbar_setbuttoninfoex|_guictrltoolbar_setbuttonparam|_guictrltoolbar_setbuttonsize|_guictrltoolbar_setbuttonstate|_guictrltoolbar_setbuttonstyle|_guictrltoolbar_setbuttontext|_guictrltoolbar_setbuttonwidth|_guictrltoolbar_setcmdid|_guictrltoolbar_setcolorscheme|_guictrltoolbar_setdisabledimagelist|_guictrltoolbar_setdrawtextflags|_guictrltoolbar_setextendedstyle|_guictrltoolbar_sethotimagelist|_guictrltoolbar_sethotitem|_guictrltoolbar_setimagelist|_guictrltoolbar_setindent|_guictrltoolbar_setindeterminate|_guictrltoolbar_setinsertmark|_guictrltoolbar_setinsertmarkcolor|_guictrltoolbar_setmaxtextrows|_guictrltoolbar_setmetrics|_guictrltoolbar_setpadding|_guictrltoolbar_setparent|_guictrltoolbar_setrows|_guictrltoolbar_setstyle|_guictrltoolbar_setstylealtdrag|_guictrltoolbar_setstylecustomerase|_guictrltoolbar_setstyleflat|_guictrltoolbar_setstylelist|_guictrltoolbar_setstyleregisterdrop|_guictrltoolbar_setstyletooltips|_guictrltoolbar_setstyletransparent|_guictrltoolbar_setstylewrapable|_guictrltoolbar_settooltips|_guictrltoolbar_setunicodeformat|_guictrltoolbar_setwindowtheme)\b
 </string>
 			<key>name</key>
-			<string>support.function.other.autoit</string>
+			<string>support.class.autoit</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -125,11 +178,19 @@
 |_word_create|_word_docadd|_word_docattach|_word_docclose|_word_docexport|_word_docfind|_word_docfindreplace|_word_docget|_word_doclinkadd|_word_doclinkget|_word_docopen|_word_docpictureadd|_word_docprint|_word_docrangeset|_word_docsave|_word_docsaveas|_word_doctableread|_word_doctablewrite|_word_quit)\b
 </string>
 			<key>name</key>
-			<string>support.function.other.autoit</string>
+			<string>support.class.autoit</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.variable.autoit</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>(?xi) @\b
+			<string>(?xi) (@)\b
 (appdatacommondir|appdatadir|autoitexe|autoitpid
 |autoitversion|autoitx64|com_eventobj|commonfilesdir|compiled
 |computername|comspec|cpuarch|cr|crlf|desktopcommondir|desktopdepth
@@ -151,7 +212,7 @@
 |windowsdir|workingdir|yday|year)\b
 </string>
 			<key>name</key>
-			<string>support.type.macro.autoit</string>
+			<string>variable.language.autoit</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -159,40 +220,50 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>string.parameter.import.autoit</string>
+					<string>punctuation.definition.keyword.autoit</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.import.autoit</string>
+					<string>string.quoted.other.autoit</string>
 				</dict>
 				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.import.autoit</string>
+				</dict>
+				<key>4</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.string.end.import.autoit</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*#(?i:include)\s+((["'&lt;]).*(["'&gt;]))</string>
+			<string>^\s*(#)(?i:include)\s+((["'&lt;]).*(["'&gt;]))</string>
 			<key>name</key>
 			<string>keyword.control.import.autoit</string>
 		</dict>
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>2</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>string.parameter.directives.autoit</string>
+					<string>punctuation.definition.keyword.autoit</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>string.parameter.directive.autoit</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?xi) ^\s*#\b
+			<string>(?xi) ^\s*(#)\b
 (include-once|notrayicon|onautoitstartregister|requireadmin
 |endregion|forcedef|forceref|ignorefunc|pragma|region)\b(.*)$
 </string>
 			<key>name</key>
-			<string>keyword.control.directives.autoit</string>
+			<string>keyword.other.directive.autoit</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -307,6 +378,14 @@
 			</array>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.valiable.autoit</string>
+				</dict>
+			</dict>
 			<key>match</key>
 			<string>(\$)[a-zA-Z_][a-zA-Z0-9_]*</string>
 			<key>name</key>
@@ -315,15 +394,21 @@
 		<dict>
 			<key>match</key>
 			<string>(?xi) \b
-(((0(x|X)[0-9a-fA-F]*)
+((0(x|X)[0-9a-fA-F]*)
 |(
   ([0-9]+\.?[0-9]*)
   |(\.[0-9]+)
  )((e|E)(\+|-)?[0-9]+)?
-)|default|false|null|true)\b
+)\b
 </string>
 			<key>name</key>
 			<string>constant.numeric.autoit</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(false|null|true)\b</string>
+			<key>name</key>
+			<string>constant.language.autoit</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -345,9 +430,9 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(?i:not|and|or)\b</string>
+			<string>\b(?i:not|and|or|redim)\b</string>
 			<key>name</key>
-			<string>keyword.operator.logical.autoit</string>
+			<string>keyword.operator.word.autoit</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -359,7 +444,7 @@
 			<key>match</key>
 			<string>\b_(?= *(?:$|;))</string>
 			<key>name</key>
-			<string>keyword.control.underscore.autoit</string>
+			<string>punctuation.separator.continuation.autoit</string>
 		</dict>
 	</array>
 	<key>repository</key>

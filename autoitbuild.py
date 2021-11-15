@@ -66,6 +66,10 @@ class AutoitIncludehelperCommand(sublime_plugin.WindowCommand):
 			sublime.load_settings("AutoIt.sublime-settings").get("IncludeHelperAU3Path")
 		if include_helper_path is None:
 			include_helper_path = PACKAGE_FOLDER + "\\Include_Helper.au3"
+		else:
+			include_helper_path = include_helper_path.replace(
+				"{PACKAGE_PATH}", sublime.packages_path()
+			)
 
 		autoit_include_cmd = [autoit_exe_path, include_helper_path, filepath,
 			autoit_include_folder]

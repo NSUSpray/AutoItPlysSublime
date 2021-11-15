@@ -9,11 +9,25 @@ contexts:
   main:
     - match: |-
         (?xi) \b
-        (and|byref|case|const|continuecase|continueloop|dim|do|else
-        |elseif|endfunc|endif|endselect|endswitch|endwith|enum|exit|exitloop|for
-        |func|global|if|in|local|next|not|or|redim|return|select|static|step
-        |switch|then|to|until|volatile|wend|while|with)\b
+        (continuecase|continueloop|do|endwith|exit|exitloop|for|in|next|return
+        |step|to|until|wend|while|with)\b
       scope: keyword.control.autoit
+    - match: |-
+        (?i)\b(case|else|elseif|endif|endselect|endswitch|if|select|switch|then)\b
+      scope: keyword.control.conditional.autoit
+    - match: (?i)\bdefault\b
+      scope: keyword.other.autoit
+    - match: (?i)\b(dim|global|local)\b
+      scope: storage.type.autoit
+    - match: (?i)\benum\b
+      scope: storage.type.enum.autoit keyword.declaration.enum.autoit
+    - match: '(?i)^\s*(?:endfunc|(func)\s+([a-zA-Z]\w*))\b'
+      scope: storage.type.function.autoit keyword.declaration.function.autoit
+      captures:
+        1: keyword.declaration.function.autoit
+        2: entity.name.function.autoit
+    - match: (?i)\b(byref|const|static|volatile)\b
+      scope: storage.modifier.autoit
     - match: |-
         (?xi) \b
         (abs|acos|adlibregister|adlibunregister|asc|ascw|asin|assign|atan|autoitsetoption|autoitwingettitle|autoitwinsettitle
@@ -103,9 +117,9 @@ contexts:
         |_winapi_waitforinputidle|_winapi_waitformultipleobjects|_winapi_waitforsingleobject|_winapi_widechartomultibyte|_winapi_widenpath|_winapi_windowfromdc|_winapi_windowfrompoint|_winapi_wordtoshort|_winapi_wow64enablewow64fsredirection|_winapi_writeconsole|_winapi_writefile|_winapi_writeprocessmemory
         |_winapi_zeromemory|_winnet_addconnection|_winnet_addconnection2|_winnet_addconnection3|_winnet_cancelconnection|_winnet_cancelconnection2|_winnet_closeenum|_winnet_connectiondialog|_winnet_connectiondialog1|_winnet_disconnectdialog|_winnet_disconnectdialog1|_winnet_enumresource|_winnet_getconnection|_winnet_getconnectionperformance|_winnet_getlasterror|_winnet_getnetworkinformation|_winnet_getprovidername|_winnet_getresourceinformation|_winnet_getresourceparent|_winnet_getuniversalname|_winnet_getuser|_winnet_openenum|_winnet_restoreconnection|_winnet_useconnection
         |_word_create|_word_docadd|_word_docattach|_word_docclose|_word_docexport|_word_docfind|_word_docfindreplace|_word_docget|_word_doclinkadd|_word_doclinkget|_word_docopen|_word_docpictureadd|_word_docprint|_word_docrangeset|_word_docsave|_word_docsaveas|_word_doctableread|_word_doctablewrite|_word_quit)\b
-      scope: support.function.other.autoit
+      scope: support.class.autoit
     - match: |-
-        '(?xi) @\b
+        (?xi) (@)\b
         (appdatacommondir|appdatadir|autoitexe|autoitpid
         |autoitversion|autoitx64|com_eventobj|commonfilesdir|compiled
         |computername|comspec|cpuarch|cr|crlf|desktopcommondir|desktopdepth
@@ -124,21 +138,25 @@ contexts:
         |sw_showmaximized|sw_showminimized|sw_showminnoactive|sw_showna
         |sw_shownoactivate|sw_shownormal|sw_unlock|systemdir|tab|tempdir
         |tray_id|trayiconflashing|trayiconvisible|username|userprofiledir|wday
-        |windowsdir|workingdir|yday|year)\b'
-      scope: support.type.macro.autoit
-    - match: '^\s*#(?i:include)\s+((["''<]).*(["''>]))'
+        |windowsdir|workingdir|yday|year)\b
+      scope: variable.language.autoit
+      captures:
+        1: punctuation.definition.variable.autoit
+    - match: '^\s*(#)(?i:include)\s+((["''<]).*(["''>]))'
       scope: keyword.control.import.autoit
       captures:
-        1: string.parameter.import.autoit
-        2: punctuation.definition.string.begin.import.autoit
-        3: punctuation.definition.string.end.import.autoit
+        1: punctuation.definition.keyword.autoit
+        2: string.quoted.other.autoit
+        3: punctuation.definition.string.begin.import.autoit
+        4: punctuation.definition.string.end.import.autoit
     - match: |-
-        (?xi) ^\s*\#\b
+        (?xi) ^\s*(\#)\b
         (include-once|notrayicon|onautoitstartregister|requireadmin
         |endregion|forcedef|forceref|ignorefunc|pragma|region)\b(.*)$
-      scope: keyword.control.directives.autoit
+      scope: keyword.other.directive.autoit
       captures:
-        2: string.parameter.directives.autoit
+        1: punctuation.definition.keyword.autoit
+        3: string.parameter.directive.autoit
     - match: (?i:#cs).*$
       push:
         - meta_scope: comment.block.cs.autoit
@@ -181,33 +199,37 @@ contexts:
         - include: restrict-newlines
     - match: '(\$)[a-zA-Z_][a-zA-Z0-9_]*'
       scope: variable.other.autoit
+      captures:
+        1: punctuation.definition.variable.autoit
     - match: |-
         (?xi) \b
-        (((0(x|X)[0-9a-fA-F]*)
+        ((0(x|X)[0-9a-fA-F]*)
         |(
           ([0-9]+\.?[0-9]*)
           |(\.[0-9]+)
          )((e|E)(\+|-)?[0-9]+)?
-        )|default|false|null|true)\b
+        )\b
       scope: constant.numeric.autoit
+    - match: (?i)\b(false|null|true)\b
+      scope: constant.language.autoit
     - match: "[-+*/&]?="
       scope: keyword.operator.assignment.autoit
     - match: '\+|-|\*|\^|/|&|\?|:'
       scope: keyword.operator.arithmetic.autoit
     - match: "<|>|<>|[<>=]="
       scope: keyword.operator.comparison.autoit
-    - match: \b(?i:not|and|or)\b
-      scope: keyword.operator.logical.autoit
+    - match: \b(?i:not|and|or|redim)\b
+      scope: keyword.operator.word.autoit
     - match: '[\[\]()]'
       scope: punctuation.bracket.autoit
     - match: \b_(?= *(?:$|;))
-      scope: keyword.control.underscore.autoit
+      scope: punctuation.separator.continuation.autoit
   restrict-newlines:
     - match: \n.*$
       scope: invalid.illegal.string.eol.autoit
   send-keys:
     - match: |-
-        '(?xi) {\b
+        (?xi) {\b
         (appskey|backspace|browser_back|browser_favorites
         |browser_forward|browser_home|browser_refresh|browser_search
         |browser_stop|bs|capslock|del|delete|down|end|enter|esc|escape|f1|f10
@@ -217,5 +239,5 @@ contexts:
         |numpad5|numpad6|numpad7|numpad8|numpad9|numpadadd|numpaddiv|numpaddot
         |numpadenter|numpadmult|numpadsub|pause|pgdn|pgup|printscreen|right
         |scrolllock|sleep|space|tab|up|volume_down|volume_mute|volume_up)
-        (\ [1-9][0-9]*)?\b}'
+        (\ [1-9][0-9]*)?\b}
       scope: constant.other.send-key.autoit
