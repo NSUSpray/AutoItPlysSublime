@@ -1,10 +1,10 @@
 [
-	{ "keys": ["f1"], "command": "autoitcontexthelp", "context":
+	{ "keys": ["f1"], "command": "autoit_contexthelp", "context":
 		[
 			{ "key": "selector", "operator": "equal", "operand" : "source.autoit" }
 		]
 	},
-	{ "keys": ["f1"], "command": "plyscontexthelp", "context":
+	{ "keys": ["f1"], "command": "plys_contexthelp", "context":
 		[
 			{ "key": "selector", "operator": "equal", "operand" : "source.autoit-plys" }
 		]

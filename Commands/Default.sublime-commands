@@ -1,18 +1,46 @@
 [
     {
-        "caption": "AutoIt - Tidy",
-        "command": "autoittidy"
+        "caption": "AutoIt: Tidy",
+        "command": "autoit_tidy"
     },
     {
-        "caption": "AutoIt - Include Helper",
-        "command": "autoitincludehelper"
+        "caption": "AutoIt: Include Helper",
+        "command": "autoit_includehelper"
     },
     {
-        "caption": "AutoIt - Window Info",
-        "command": "autoitwindowinfo"
+        "caption": "AutoIt: Window Info",
+        "command": "autoit_windowinfo"
     },
     {
-        "caption": "AutoIt - Help",
-        "command": "autoithelp"
-    }
+        "caption": "AutoIt: Help",
+        "command": "autoit_help"
+    },
+    {
+        "caption": "AutoIt: Context Help",
+        "command": "autoit_contexthelp"
+    },
+    {
+        "caption": "AutoIt: Run",
+        "command": "autoit_build"
+    },
+    {
+        "caption": "AutoIt: Compile",
+        "command": "autoit_compile"
+    },
+    {
+        "caption": "AutoIt: Plys Help",
+        "command": "plys_help"
+    },
+    {
+        "caption": "AutoIt: Plys Context Help",
+        "command": "plys_contexthelp"
+    },
+    {
+        "caption": "AutoIt: Plys Run",
+        "command": "plys_build"
+    },
+    {
+        "caption": "AutoIt: Plys Translate",
+        "command": "plys_translate"
+    },
 ]

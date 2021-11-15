@@ -7,12 +7,12 @@
 		[
 			{ "caption": "-", "id": "packagecommands" },
 			{ "caption": "AutoIt Plys", "mnemonic": "I", "children": [
-				{ "command": "autoitincludehelper", "caption": "Include Helper", "mnemonic": "I" },
-				{ "command": "autoitwindowinfo", "caption": "Window Info", "mnemonic": "f" },
-				{ "command": "autoithelp", "caption": "Help", "mnemonic": "H" },
-				{ "command": "plyshelp", "caption": "Plys Help", "mnemonic": "P" },
+				{ "command": "autoit_includehelper", "caption": "Include Helper", "mnemonic": "I" },
+				{ "command": "autoit_windowinfo", "caption": "Window Info", "mnemonic": "f" },
+				{ "command": "autoit_help", "caption": "Help", "mnemonic": "H" },
+				{ "command": "plys_help", "caption": "Plys Help", "mnemonic": "P" },
 				{ "caption": "-" },
-				{ "command": "autoittidy", "caption": "Tidy", "mnemonic": "T" }
+				{ "command": "autoit_tidy", "caption": "Tidy", "mnemonic": "T" }
 			]},
 		]
 	},

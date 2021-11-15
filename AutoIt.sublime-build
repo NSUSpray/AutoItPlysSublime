@@ -1,10 +1,10 @@
 {
-	"target": "autoitbuild",
+	"target": "autoit_build",
 	"selector": "source.autoit",
 	"variants": [
 		{
 			"name": "Compile",
-			"target": "autoitcompile"
+			"target": "autoit_compile"
 		}
 	]
 

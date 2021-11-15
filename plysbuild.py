@@ -1,7 +1,7 @@
 import sublime, sublime_plugin
 import AutoItPlysSublime.autoitbuild as autoitbuild
 
-class plysbuild(sublime_plugin.WindowCommand):
+class PlysBuildCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		filepath = self.window.active_view().file_name()
 		settings = sublime.load_settings("AutoIt.sublime-settings")
@@ -13,7 +13,7 @@ class plysbuild(sublime_plugin.WindowCommand):
 			{ "cmd": cmd, "file_regex": r'[^"]*"?([a-zA-Z]:\\.+?\.aup)"? \(([0-9]*)()\) : ==> (.*)$' }
 		)
 
-class plystranslate(sublime_plugin.WindowCommand):
+class PlysTranslateCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		filepath = self.window.active_view().file_name()
 		settings = sublime.load_settings("AutoIt.sublime-settings")
@@ -23,7 +23,7 @@ class plystranslate(sublime_plugin.WindowCommand):
 		cmd = [autoit_exe_path, plys_path, "/Translate", filepath]
 		self.window.run_command("exec", {"cmd": cmd})
 
-class plyshelp(autoitbuild.autoithelp):
+class PlysHelpCommand(autoitbuild.AutoitHelpCommand):
 	def run(self):
 		self.plys_help_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("PlysHelpPath")
@@ -32,7 +32,7 @@ class plyshelp(autoitbuild.autoithelp):
 	def make_args(self):
 		return super().make_args() + ["Introduction", self.plys_help_path]
 
-class plyscontexthelp(autoitbuild.autoitcontexthelp):
+class PlysContexthelpCommand(autoitbuild.AutoitContexthelpCommand):
 	def run(self, edit):
 		self.plys_help_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("PlysHelpPath")
@@ -41,7 +41,7 @@ class plyscontexthelp(autoitbuild.autoitcontexthelp):
 	def make_args(self, query):
 		return super().make_args(query) + [self.plys_help_path]
 
-class plysgetpaths(sublime_plugin.WindowCommand):
+class PlysGetpathsCommand(sublime_plugin.WindowCommand):
 	def __init__(self, window):
 		super().__init__(window)
 		if sublime.load_settings("AutoIt.sublime-settings").get("PlysStatus") == "installed":
@@ -56,8 +56,8 @@ class plysgetpaths(sublime_plugin.WindowCommand):
 			return
 
 		import json
-		default_settings_path = sublime.packages_path() + \
-			"\\AutoItPlysSublime\\AutoIt.sublime-settings"
+		default_settings_path = \
+			autoitbuild.PACKAGE_FOLDER + "\\AutoIt.sublime-settings"
 		with open(default_settings_path) as f:
 			settings = json.load(f)
 		settings["PlysAU3Path"] = autoit_exe_folder + "\\Plys\\plys.au3"
@@ -65,6 +65,12 @@ class plysgetpaths(sublime_plugin.WindowCommand):
 		settings["PlysStatus"] = "installed"
 		with open(default_settings_path, "w") as f:
 			json.dump(settings, f, indent="\t")
+
+		import shutil
+		shutil.move(
+			autoitbuild.PACKAGE_FOLDER + "\\AutoIt Plys.sublime-settings",
+			sublime.packages_path() + "\\User\\"
+		)
 
 	def run(self):
 		pass

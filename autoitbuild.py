@@ -3,8 +3,10 @@ import sublime, sublime_plugin
 import subprocess
 import os
 
+PACKAGE_FOLDER = sublime.packages_path() + "\\AutoItPlysSublime"
+
 # The autoitbuild command is called as target by AutoIt.sublime-build
-class autoitbuild(sublime_plugin.WindowCommand):
+class AutoitBuildCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		filepath = self.window.active_view().file_name()
 		autoit_exe_path = \
@@ -14,7 +16,7 @@ class autoitbuild(sublime_plugin.WindowCommand):
 			{ "cmd": cmd, "file_regex": r'[^"]*"?([a-zA-Z]:\\.+?\.au3)"? \(([0-9]*)()\) : ==> (.*?)\.: ?$' }
 		)
 
-class autoitcompile(sublime_plugin.WindowCommand):
+class AutoitCompileCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		filepath = self.window.active_view().file_name()
 		autoit_compiler_path = \
@@ -22,7 +24,7 @@ class autoitcompile(sublime_plugin.WindowCommand):
 		cmd = [autoit_compiler_path, "/in", filepath]
 		self.window.run_command("exec", {"cmd": cmd})
 
-class autoittidy(sublime_plugin.WindowCommand):
+class AutoitTidyCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		self.window.run_command("save")
 		filepath = self.window.active_view().file_name()
@@ -51,7 +53,7 @@ class autoittidy(sublime_plugin.WindowCommand):
 			print("Error " + str(e))
 			sublime.status_message("### EXCEPTION: " + str(e))
 
-class autoitincludehelper(sublime_plugin.WindowCommand):
+class AutoitIncludehelperCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		self.window.run_command("save")
 
@@ -63,11 +65,7 @@ class autoitincludehelper(sublime_plugin.WindowCommand):
 		include_helper_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("IncludeHelperAU3Path")
 		if include_helper_path is None:
-			include_helper_path = \
-				"{PACKAGE_PATH}\\AutoItPlysSublime\\Include_Helper.au3"
-		include_helper_path = include_helper_path.replace(
-			"{PACKAGE_PATH}", sublime.packages_path()
-		)
+			include_helper_path = PACKAGE_FOLDER + "\\Include_Helper.au3"
 
 		autoit_include_cmd = [autoit_exe_path, include_helper_path, filepath,
 			autoit_include_folder]
@@ -82,7 +80,7 @@ class autoitincludehelper(sublime_plugin.WindowCommand):
 			print(autoit_include_cmd)
 			print("Error " + str(e))
 
-class autoitwindowinfo(sublime_plugin.WindowCommand):
+class AutoitWindowinfoCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		autoit_info_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("AutoItInfoPath")
@@ -94,7 +92,7 @@ class autoitwindowinfo(sublime_plugin.WindowCommand):
 			print("------------ ERROR: Python exception trying to run following command ------------")
 			print("Error " + str(e))
 
-class autoithelp(sublime_plugin.WindowCommand):
+class AutoitHelpCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		self.autoit_help_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("AutoItHelpPath")
@@ -109,7 +107,7 @@ class autoithelp(sublime_plugin.WindowCommand):
 	def make_args(self):
 		return [self.autoit_help_path]
 
-class autoitcontexthelp(sublime_plugin.TextCommand):
+class AutoitContexthelpCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.autoit_help_path = \
 			sublime.load_settings("AutoIt.sublime-settings").get("AutoItHelpPath")
@@ -129,7 +127,7 @@ class autoitcontexthelp(sublime_plugin.TextCommand):
 	def make_args(self, query):
 		return [self.autoit_help_path, query]
 
-class autoitgetpaths(sublime_plugin.WindowCommand):
+class AutoItGetPathsCommand(sublime_plugin.WindowCommand):
 	def __init__(self, window):
 		super().__init__(window)
 		if sublime.load_settings("AutoIt.sublime-settings").get("Status") == "installed":
@@ -144,8 +142,7 @@ class autoitgetpaths(sublime_plugin.WindowCommand):
 			return
 
 		import json
-		default_settings_path = sublime.packages_path() + \
-			"\\AutoItPlysSublime\\AutoIt.sublime-settings"
+		default_settings_path = PACKAGE_FOLDER + "\\AutoIt.sublime-settings"
 		with open(default_settings_path) as f:
 			settings = json.load(f)
 		settings["AutoItExePath"] = autoit_exe_folder + "\\AutoIt3.exe"
