@@ -1,13 +1,25 @@
 {
-	"scope": "source.autoit",
-	"completions": [
-	{ "trigger": "Dim", "contents": "Dim" },
-	{ "trigger": "Local", "contents": "Local" },
-	{ "trigger": "Global", "contents": "Global" },
-	{ "trigger": "Const", "contents": "Const" },
-	{ "trigger": "And", "contents": "And" },
-	{ "trigger": "Or", "contents": "Or" },
-	{ "trigger": "Not", "contents": "Not" },
-	{ "trigger": "ByRef", "contents": "ByRef" },
-	]
+"scope": "source.autoit",
+"completions": [
+	"And",
+	"ByRef",
+	"Const",
+	"ContinueCase",
+	"ContinueLoop",
+	"Default",
+	"Dim",
+	"Enum",
+	"Exit",
+	"ExitLoop",
+	"False",
+	"Global",
+	"Local",
+	"Not",
+	"Null",
+	"Or",
+	"ReDim",
+	"Static",
+	"True",
+	"Volatile",
+]
 }

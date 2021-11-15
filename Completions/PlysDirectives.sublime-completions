@@ -1,12 +1,12 @@
 {
 "scope": "source.autoit-plys",
 "completions": [
-	{ "trigger": "#plys dollarprefix", "contents": "#plys dollarprefix" },
-	{ "trigger": "#plys lambda", "contents": "#plys lambda" },
-	{ "trigger": "#plys noconst", "contents": "#plys noconst" },
-	{ "trigger": "#plys noimport", "contents": "#plys noimport" },
-	{ "trigger": "#plys noindent", "contents": "#plys noindent" },
-	{ "trigger": "#plys nostdio", "contents": "#plys nostdio" },
-	{ "trigger": "#plys nosynonyms", "contents": "#plys nosynonyms" },
+	"#plys dollarprefix",
+	"#plys lambda",
+	"#plys noconst",
+	"#plys noimport",
+	"#plys noindent",
+	"#plys nostdio",
+	"#plys nosynonyms",
 ]
 }

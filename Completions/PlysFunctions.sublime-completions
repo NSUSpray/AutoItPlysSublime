@@ -1,246 +1,163 @@
 {
-	"scope": "source.autoit-plys",
-	"completions": [{
-		"trigger": "Echo()",
-		"contents": "Echo(${1:data})"
-	}, {
-		"trigger": "Struct()",
-		"contents": "Struct(${1:Struct}, ${2:Pointer})"
-	}, {
-		"trigger": "StructGet()",
-		"contents": "StructGet(${1:Struct}, ${2:Element}${3:, ${4:[index]}})"
-	}, {
-		"trigger": "StructGetPtr()",
-		"contents": "StructGetPtr(${1:Struct}, ${2:Element})"
-	}, {
-		"trigger": "StructGetSize()",
-		"contents": "StructGetSize(${1:Struct})"
-	}, {
-		"trigger": "StructSet()",
-		"contents": "StructSet(${1:Struct}, ${2:Element}, ${3:value}${4:, ${5:[index]}})"
-	}, {
-		"trigger": "ChangeDir()",
-		"contents": "ChangeDir(${1:path})"
-	}, {
-		"trigger": "Copy()",
-		"contents": "Copy(${1:source}, ${2:dest}${3:, ${4:[flag]}})"
-	}, {
-		"trigger": "CreateLink()",
-		"contents": "CreateLink(${1:source}, ${2:hardlink}${3:, ${4:[flag]}})"
-	}, {
-		"trigger": "CreateShortcut()",
-		"contents": "CreateShortcut(${1:file}, ${2:lnk}${3:, \"${4:[workdir]}\"${5:, \"${6:[args]}\"${7:, \"${8:[desc]}\"${9:, \"${10:[icon]}\"${11:, \"${12:[hotkey]}\"${13:, ${14:[icon number]}${15:, ${16:[state]}}}}}}}})"
-	}, {
-		"trigger": "FirstFile()",
-		"contents": "FirstFile(${1:filename})"
-	}, {
-		"trigger": "NextFile()",
-		"contents": "NextFile(${1:search})"
-	}, {
-		"trigger": "Flush()",
-		"contents": "Flush(${1:filehandle})"
-	}, {
-		"trigger": "GetAttrib()",
-		"contents": "GetAttrib(${1:filename})"
-	}, {
-		"trigger": "GetEncoding()",
-		"contents": "GetEncoding(${1:filehandle\/filename}${2:, ${3:[mode]}})"
-	}, {
-		"trigger": "GetLongName()",
-		"contents": "GetLongName(${1:file}${2:, ${3:[flag]}})"
-	}, {
-		"trigger": "GetShortcut()",
-		"contents": "GetShortcut(${1:lnk})"
-	}, {
-		"trigger": "GetShortName()",
-		"contents": "GetShortName(${1:file}${2:, ${3:[flag]}})"
-	}, {
-		"trigger": "GetSize()",
-		"contents": "GetSize(${1:filename})"
-	}, {
-		"trigger": "GetTime()",
-		"contents": "GetTime(${1:filename}${2:, ${3:[option]}${4:, ${5:[format]}}})"
-	}, {
-		"trigger": "GetVersion()",
-		"contents": "GetVersion(${1:filename}, ${2:stringname})"
-	}, {
-		"trigger": "Open()",
-		"contents": "Open(${1:filename}${2:, ${3:[mode]}})"
-	}, {
-		"trigger": "OpenDialog()",
-		"contents": "OpenDialog(${1:title}, ${2:init dir}, ${3:filter}${4:, ${5:[options]}${6:, \"${7:[default name]}\"${8:, ${9:[hwnd]}}}})"
-	}, {
-		"trigger": "Read()",
-		"contents": "Read(${1:filehandle\/filename}${2:, ${3:[count]}})"
-	}, {
-		"trigger": "ReadLine()",
-		"contents": "ReadLine(${1:filehandle\/filename}${2:, ${3:[line]}})"
-	}, {
-		"trigger": "Recycle()",
-		"contents": "Recycle(${1:source})"
-	}, {
-		"trigger": "RecycleEmpty()",
-		"contents": "RecycleEmpty(${1:\"${2:[source]}\"})"
-	}, {
-		"trigger": "SaveDialog()",
-		"contents": "SaveDialog(${1:title}, ${2:init dir}, ${3:filter}${4:, ${5:[options]}${6:, \"${7:[default name]}\"${8:, ${9:[hwnd]}}}})"
-	}, {
-		"trigger": "SelectFolder()",
-		"contents": "SelectFolder(${1:dialog text}, ${2:root dir}${3:, ${4:[flag]}${5:, \"${6:[initial dir]}\"${7:, ${8:[hwnd]}}}})"
-	}, {
-		"trigger": "SetAttrib()",
-		"contents": "SetAttrib(${1:file pattern}, ${2:+-RASHNOT}${3:, ${4:[recurse]}})"
-	}, {
-		"trigger": "SetPos()",
-		"contents": "SetPos(${1:filehandle}, ${2:offset}, ${3:origin})"
-	}, {
-		"trigger": "SetTime()",
-		"contents": "SetTime(${1:file pattern}, ${2:time}${3:, ${4:[type]}${5:, ${6:[recurse]}}})"
-	}, {
-		"trigger": "Write()",
-		"contents": "Write(${1:filehandle\/filename}, ${2:text\/data})"
-	}, {
-		"trigger": "WriteLine()",
-		"contents": "WriteLine(${1:filehandle\/filename}, ${2:line})"
-	}, {
-		"trigger": "AddCR()",
-		"contents": "AddCR(${1:string})"
-	}, {
-		"trigger": "Format()",
-		"contents": "Format(${1:format control}, ${2:var1}${3:, ${4:[... var32]}})"
-	}, {
-		"trigger": "InStr()",
-		"contents": "InStr(${1:string}, ${2:substring}${3:, ${4:[casesense]}${5:, ${6:[occurrence]}${7:, ${8:[start]}${9:, ${10:[count]}}}}})"
-	}, {
-		"trigger": "IsAlNum()",
-		"contents": "IsAlNum(${1:string})"
-	}, {
-		"trigger": "IsAlpha()",
-		"contents": "IsAlpha(${1:string})"
-	}, {
-		"trigger": "IsASCII()",
-		"contents": "IsASCII(${1:string})"
-	}, {
-		"trigger": "IsDigit()",
-		"contents": "IsDigit(${1:string})"
-	}, {
-		"trigger": "IsLower()",
-		"contents": "IsLower(${1:string})"
-	}, {
-		"trigger": "IsSpace()",
-		"contents": "IsSpace(${1:string})"
-	}, {
-		"trigger": "IsUpper()",
-		"contents": "IsUpper(${1:string})"
-	}, {
-		"trigger": "IsXDigit()",
-		"contents": "IsXDigit(${1:string})"
-	}, {
-		"trigger": "Left()",
-		"contents": "Left(${1:string}, ${2:count})"
-	}, {
-		"trigger": "Len()",
-		"contents": "Len(${1:string})"
-	}, {
-		"trigger": "Lower()",
-		"contents": "Lower(${1:string})"
-	}, {
-		"trigger": "Mid()",
-		"contents": "Mid(${1:string}, ${2:start}${3:, ${4:[count]}})"
-	}, {
-		"trigger": "ReFind()",
-		"contents": "ReFind(${1:test}, ${2:pattern}${3:, ${4:[flag]}${5:, ${6:[offset]}}})"
-	}, {
-		"trigger": "ReReplace()",
-		"contents": "ReReplace(${1:test}, ${2:pattern}, ${3:replace}${4:, ${5:[count]}})"
-	}, {
-		"trigger": "Replace()",
-		"contents": "Replace(${1:string}, ${2:searchstring\/start}, ${3:replacestring}${4:, ${5:[occurrence]}${6:, ${7:[casesense]}}})"
-	}, {
-		"trigger": "Right()",
-		"contents": "Right(${1:string}, ${2:count})"
-	}, {
-		"trigger": "Split()",
-		"contents": "Split(${1:string}, ${2:delimiters}${3:, ${4:[flag]}})"
-	}, {
-		"trigger": "StripCR()",
-		"contents": "StripCR(${1:string})"
-	}, {
-		"trigger": "StripWS()",
-		"contents": "StripWS(${1:string}, ${2:flag})"
-	}, {
-		"trigger": "ToBinary()",
-		"contents": "ToBinary(${1:expression}${2:, ${3:[flag]}})"
-	}, {
-		"trigger": "TrimLeft()",
-		"contents": "TrimLeft(${1:string}, ${2:count})"
-	}, {
-		"trigger": "TrimRight()",
-		"contents": "TrimRight(${1:string}, ${2:count})"
-	}, {
-		"trigger": "Upper()",
-		"contents": "Upper(${1:string})"
-	}, {
-		"trigger": "Activate()",
-		"contents": "Activate(${1:title}${2:, \"${3:[text]}\"})"
-	}, {
-		"trigger": "Active()",
-		"contents": "Active(${1:title}${2:, \"${3:[text]}\"})"
-	}, {
-		"trigger": "Flash()",
-		"contents": "Flash(${1:title}, ${2:text}, ${3:flashes}, ${4:delay})"
-	}, {
-		"trigger": "GetCaretPos()",
-		"contents": "GetCaretPos()"
-	}, {
-		"trigger": "GetClassList()",
-		"contents": "GetClassList(${1:title}${2:, \"${3:[text]}\"})"
-	}, {
-		"trigger": "GetClientSize()",
-		"contents": "GetClientSize(${1:title}${2:, \"${3:[text]}\"})"
-	}, {
-		"trigger": "GetProcess()",
-		"contents": "GetProcess(${1:title}${2:, \"${3:[text]}\"})"
-	}, {
-		"trigger": "GetTitle()",
-		"contents": "GetTitle(${1:title}${2:, \"${3:[text]}\"})"
-	}, {
-		"trigger": "Kill()",
-		"contents": "Kill(${1:title}${2:, \"${3:[text]}\"})"
-	}, {
-		"trigger": "List()",
-		"contents": "List(${1:\"${2:[title]}\"${3:, \"${4:[text]}\"}})"
-	}, {
-		"trigger": "MenuSelectItem()",
-		"contents": "MenuSelectItem(${1:title}, ${2:text}, ${3:item}${4:, \"${5:[item]}\"${6:, \"${7:[item]}\"${8:, \"${9:[item]}\"${10:, \"${11:[item]}\"${12:, \"${13:[item]}\"${14:, \"${15:[item]}\"}}}}}})"
-	}, {
-		"trigger": "MinimizeAll()",
-		"contents": "MinimizeAll()"
-	}, {
-		"trigger": "MinimizeAllUndo()",
-		"contents": "MinimizeAllUndo()"
-	}, {
-		"trigger": "SetOnTop()",
-		"contents": "SetOnTop(${1:title}, ${2:text}, ${3:flag})"
-	}, {
-		"trigger": "SetTitle()",
-		"contents": "SetTitle(${1:title}, ${2:text}, ${3:newtitle})"
-	}, {
-		"trigger": "SetTrans()",
-		"contents": "SetTrans(${1:title}, ${2:text}, ${3:transparency})"
-	}, {
-		"trigger": "Wait()",
-		"contents": "Wait(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})"
-	}, {
-		"trigger": "WaitActive()",
-		"contents": "WaitActive(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})"
-	}, {
-		"trigger": "WaitClose()",
-		"contents": "WaitClose(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})"
-	}, {
-		"trigger": "WaitNotActive()",
-		"contents": "WaitNotActive(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})"
-	}, 
+"scope": "source.autoit-plys",
+"completions": [
+	{ "trigger": "Echo()",
+		"contents": "Echo(${1:data})" },
+	{ "trigger": "Struct()",
+		"contents": "Struct(${1:Struct}, ${2:Pointer})" },
+	{ "trigger": "StructGet()",
+		"contents": "StructGet(${1:Struct}, ${2:Element}${3:, ${4:[index]}})" },
+	{ "trigger": "StructGetPtr()",
+		"contents": "StructGetPtr(${1:Struct}, ${2:Element})" },
+	{ "trigger": "StructGetSize()",
+		"contents": "StructGetSize(${1:Struct})" },
+	{ "trigger": "StructSet()",
+		"contents": "StructSet(${1:Struct}, ${2:Element}, ${3:value}${4:, ${5:[index]}})" },
+	{ "trigger": "ChangeDir()",
+		"contents": "ChangeDir(${1:path})" },
+	{ "trigger": "Copy()",
+		"contents": "Copy(${1:source}, ${2:dest}${3:, ${4:[flag]}})" },
+	{ "trigger": "CreateLink()",
+		"contents": "CreateLink(${1:source}, ${2:hardlink}${3:, ${4:[flag]}})" },
+	{ "trigger": "CreateShortcut()",
+		"contents": "CreateShortcut(${1:file}, ${2:lnk}${3:, \"${4:[workdir]}\"${5:, \"${6:[args]}\"${7:, \"${8:[desc]}\"${9:, \"${10:[icon]}\"${11:, \"${12:[hotkey]}\"${13:, ${14:[icon number]}${15:, ${16:[state]}}}}}}}})" },
+	{ "trigger": "FirstFile()",
+		"contents": "FirstFile(${1:filename})" },
+	{ "trigger": "NextFile()",
+		"contents": "NextFile(${1:search})" },
+	{ "trigger": "Flush()",
+		"contents": "Flush(${1:filehandle})" },
+	{ "trigger": "GetAttrib()",
+		"contents": "GetAttrib(${1:filename})" },
+	{ "trigger": "GetEncoding()",
+		"contents": "GetEncoding(${1:filehandle\/filename}${2:, ${3:[mode]}})" },
+	{ "trigger": "GetLongName()",
+		"contents": "GetLongName(${1:file}${2:, ${3:[flag]}})" },
+	{ "trigger": "GetShortcut()",
+		"contents": "GetShortcut(${1:lnk})" },
+	{ "trigger": "GetShortName()",
+		"contents": "GetShortName(${1:file}${2:, ${3:[flag]}})" },
+	{ "trigger": "GetSize()",
+		"contents": "GetSize(${1:filename})" },
+	{ "trigger": "GetTime()",
+		"contents": "GetTime(${1:filename}${2:, ${3:[option]}${4:, ${5:[format]}}})" },
+	{ "trigger": "GetVersion()",
+		"contents": "GetVersion(${1:filename}, ${2:stringname})" },
+	{ "trigger": "Open()",
+		"contents": "Open(${1:filename}${2:, ${3:[mode]}})" },
+	{ "trigger": "OpenDialog()",
+		"contents": "OpenDialog(${1:title}, ${2:init dir}, ${3:filter}${4:, ${5:[options]}${6:, \"${7:[default name]}\"${8:, ${9:[hwnd]}}}})" },
+	{ "trigger": "Read()",
+		"contents": "Read(${1:filehandle\/filename}${2:, ${3:[count]}})" },
+	{ "trigger": "ReadLine()",
+		"contents": "ReadLine(${1:filehandle\/filename}${2:, ${3:[line]}})" },
+	{ "trigger": "Recycle()",
+		"contents": "Recycle(${1:source})" },
+	{ "trigger": "RecycleEmpty()",
+		"contents": "RecycleEmpty(${1:\"${2:[source]}\"})" },
+	{ "trigger": "SaveDialog()",
+		"contents": "SaveDialog(${1:title}, ${2:init dir}, ${3:filter}${4:, ${5:[options]}${6:, \"${7:[default name]}\"${8:, ${9:[hwnd]}}}})" },
+	{ "trigger": "SelectFolder()",
+		"contents": "SelectFolder(${1:dialog text}, ${2:root dir}${3:, ${4:[flag]}${5:, \"${6:[initial dir]}\"${7:, ${8:[hwnd]}}}})" },
+	{ "trigger": "SetAttrib()",
+		"contents": "SetAttrib(${1:file pattern}, ${2:+-RASHNOT}${3:, ${4:[recurse]}})" },
+	{ "trigger": "SetPos()",
+		"contents": "SetPos(${1:filehandle}, ${2:offset}, ${3:origin})" },
+	{ "trigger": "SetTime()",
+		"contents": "SetTime(${1:file pattern}, ${2:time}${3:, ${4:[type]}${5:, ${6:[recurse]}}})" },
+	{ "trigger": "Write()",
+		"contents": "Write(${1:filehandle\/filename}, ${2:text\/data})" },
+	{ "trigger": "WriteLine()",
+		"contents": "WriteLine(${1:filehandle\/filename}, ${2:line})" },
+	{ "trigger": "AddCR()",
+		"contents": "AddCR(${1:string})" },
+	{ "trigger": "Format()",
+		"contents": "Format(${1:format control}, ${2:var1}${3:, ${4:[... var32]}})" },
+	{ "trigger": "InStr()",
+		"contents": "InStr(${1:string}, ${2:substring}${3:, ${4:[casesense]}${5:, ${6:[occurrence]}${7:, ${8:[start]}${9:, ${10:[count]}}}}})" },
+	{ "trigger": "IsAlNum()",
+		"contents": "IsAlNum(${1:string})" },
+	{ "trigger": "IsAlpha()",
+		"contents": "IsAlpha(${1:string})" },
+	{ "trigger": "IsASCII()",
+		"contents": "IsASCII(${1:string})" },
+	{ "trigger": "IsDigit()",
+		"contents": "IsDigit(${1:string})" },
+	{ "trigger": "IsLower()",
+		"contents": "IsLower(${1:string})" },
+	{ "trigger": "IsSpace()",
+		"contents": "IsSpace(${1:string})" },
+	{ "trigger": "IsUpper()",
+		"contents": "IsUpper(${1:string})" },
+	{ "trigger": "IsXDigit()",
+		"contents": "IsXDigit(${1:string})" },
+	{ "trigger": "Left()",
+		"contents": "Left(${1:string}, ${2:count})" },
+	{ "trigger": "Len()",
+		"contents": "Len(${1:string})" },
+	{ "trigger": "Lower()",
+		"contents": "Lower(${1:string})" },
+	{ "trigger": "Mid()",
+		"contents": "Mid(${1:string}, ${2:start}${3:, ${4:[count]}})" },
+	{ "trigger": "ReFind()",
+		"contents": "ReFind(${1:test}, ${2:pattern}${3:, ${4:[flag]}${5:, ${6:[offset]}}})" },
+	{ "trigger": "ReReplace()",
+		"contents": "ReReplace(${1:test}, ${2:pattern}, ${3:replace}${4:, ${5:[count]}})" },
+	{ "trigger": "Replace()",
+		"contents": "Replace(${1:string}, ${2:searchstring\/start}, ${3:replacestring}${4:, ${5:[occurrence]}${6:, ${7:[casesense]}}})" },
+	{ "trigger": "Right()",
+		"contents": "Right(${1:string}, ${2:count})" },
+	{ "trigger": "Split()",
+		"contents": "Split(${1:string}, ${2:delimiters}${3:, ${4:[flag]}})" },
+	{ "trigger": "StripCR()",
+		"contents": "StripCR(${1:string})" },
+	{ "trigger": "StripWS()",
+		"contents": "StripWS(${1:string}, ${2:flag})" },
+	{ "trigger": "ToBinary()",
+		"contents": "ToBinary(${1:expression}${2:, ${3:[flag]}})" },
+	{ "trigger": "TrimLeft()",
+		"contents": "TrimLeft(${1:string}, ${2:count})" },
+	{ "trigger": "TrimRight()",
+		"contents": "TrimRight(${1:string}, ${2:count})" },
+	{ "trigger": "Upper()",
+		"contents": "Upper(${1:string})" },
+	{ "trigger": "Activate()",
+		"contents": "Activate(${1:title}${2:, \"${3:[text]}\"})" },
+	{ "trigger": "Active()",
+		"contents": "Active(${1:title}${2:, \"${3:[text]}\"})" },
+	{ "trigger": "Flash()",
+		"contents": "Flash(${1:title}, ${2:text}, ${3:flashes}, ${4:delay})" },
+	"GetCaretPos()",
+	{ "trigger": "GetClassList()",
+		"contents": "GetClassList(${1:title}${2:, \"${3:[text]}\"})" },
+	{ "trigger": "GetClientSize()",
+		"contents": "GetClientSize(${1:title}${2:, \"${3:[text]}\"})" },
+	{ "trigger": "GetProcess()",
+		"contents": "GetProcess(${1:title}${2:, \"${3:[text]}\"})" },
+	{ "trigger": "GetTitle()",
+		"contents": "GetTitle(${1:title}${2:, \"${3:[text]}\"})" },
+	{ "trigger": "Kill()",
+		"contents": "Kill(${1:title}${2:, \"${3:[text]}\"})" },
+	{ "trigger": "List()",
+		"contents": "List(${1:\"${2:[title]}\"${3:, \"${4:[text]}\"}})" },
+	{ "trigger": "MenuSelectItem()",
+		"contents": "MenuSelectItem(${1:title}, ${2:text}, ${3:item}${4:, \"${5:[item]}\"${6:, \"${7:[item]}\"${8:, \"${9:[item]}\"${10:, \"${11:[item]}\"${12:, \"${13:[item]}\"${14:, \"${15:[item]}\"}}}}}})" },
+	"MinimizeAll()",
+	"MinimizeAllUndo()",
+	{ "trigger": "SetOnTop()",
+		"contents": "SetOnTop(${1:title}, ${2:text}, ${3:flag})" },
+	{ "trigger": "SetTitle()",
+		"contents": "SetTitle(${1:title}, ${2:text}, ${3:newtitle})" },
+	{ "trigger": "SetTrans()",
+		"contents": "SetTrans(${1:title}, ${2:text}, ${3:transparency})" },
+	{ "trigger": "Wait()",
+		"contents": "Wait(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})" },
+	{ "trigger": "WaitActive()",
+		"contents": "WaitActive(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})" },
+	{ "trigger": "WaitClose()",
+		"contents": "WaitClose(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})" },
+	{ "trigger": "WaitNotActive()",
+		"contents": "WaitNotActive(${1:title}${2:, \"${3:[text]}\"${4:, ${5:[timeout]}}})" }, 
 	{ "trigger": "Add()", "contents": "Add($1)" },
 	{ "trigger": "BinSearch()", "contents": "BinarySearch($1)" },
 	{ "trigger": "Combinations()", "contents": "Combinations($1)" },
@@ -261,7 +178,8 @@
 	{ "trigger": "Swap()", "contents": "Swap($1)" },
 	{ "trigger": "ToClip()", "contents": "ToClip($1)" },
 	{ "trigger": "ToHist()", "contents": "ToHist($1)" },
-	{ "trigger": "Transpose()", "contents": "Transpose()" },
+	"Transpose()",
 	{ "trigger": "Trim()", "contents": "Trim($1)" },
-	{ "trigger": "Unique()", "contents": "Unique($1)" }]
+	{ "trigger": "Unique()", "contents": "Unique($1)" }
+]
 }

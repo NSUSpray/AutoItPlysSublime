@@ -1,34 +1,29 @@
 {
-	"scope": "source.autoit",
-	"completions": [{
-		"trigger": "Func",
-		"contents": "Func ${1:NameFunc}()\n\n\t${2}\n\nEndFunc"
-	}, {
-		"trigger": "If",
-		"contents": "If ( ${1:true} ) Then\n\n\t${2}\n\nEndIf"
-	}, {
-		"trigger": "Ternary",
-		"contents": "${1:\\$variable} = ( ${2:\\$a == \\$b} ) ? ${3:true} : ${4:false}"
-	}, {
-		"trigger": "Switch",
-		"contents": "Switch (${1:\\$variable})\n\tCase ${2:6 To 11}\n\t\t${3:true}\n\tCase ${4:12 To 17}\n\t\t${5:true}\n\tCase Else\n\t\t${6:false}\nEndSwitch"
-	}, {
-		"trigger": "While",
-		"contents": "While ( ${1:true} )\n\n\t${2}\n\nWEnd"
-	}, {
-		"trigger": "ForInNext",
-		"contents": "For ${1:\\$vElement} In ${2:\\$aArray}\n\n\t${3:ConsoleWrite(\\$vElement)}\n\nNext"
-	}, {
-		"trigger": "ForToStepNext",
-		"contents": "For \\$${1:i} = ${2:0} To ${3:1} Step ${4:+1}\n\n\t${5:ConsoleWrite(\\$i)}\n\nNext"
-	}, {
-		"trigger": "#cs",
-		"contents": "#cs\n\t${1}\n#ce"
-	}, {
-		"trigger": "Do...Until",
-		"contents": "Do\n\n\t${1}\n\nUntil ( ${2:false} )"
-	}, {
-		"trigger": "Region...EndRegion",
-		"contents": "#Region\n\n\t${1}\n\n#EndRegion"
-	}]
+"scope": "source.autoit",
+"completions": [
+	{ "trigger": "Do…Until",
+		"contents": "Do\n\t$1\nUntil ${2:condition}" },
+	{ "trigger": "For…In",
+		"contents": "For ${1:element} In ${2:collection}\n\t$3\nNext" },
+	{ "trigger": "For…To",
+		"contents": "For \\$${1:i} = ${2:0} To $3\n\t$4\nNext" },
+	{ "trigger": "For…To…Step",
+		"contents": "For \\$${1:i} = ${2:0} To $3 Step ${4:-1}\n\t$5\nNext" },
+	{ "trigger": "Func",
+		"contents": "Func ${1:name}()\n\t$2\nEndFunc" },
+	{ "trigger": "If…Then",
+		"contents": "If $1 Then\n\t$2\nEndIf" },
+	{ "trigger": "If…Then…Else",
+		"contents": "If $1 Then\n\t$2\nElse\n\t$3\nEndIf" },
+	{ "trigger": "Select",
+		"contents": "Select\n\tCase ${1:condition}\n\t\t${2:if_true}\nEndSelect" },
+	{ "trigger": "Switch",
+		"contents": "Switch ${1:expression}\n\tCase ${2:value}\n\t\t${3:if_true}\nEndSwitch" },
+	{ "trigger": "Ternary",
+		"contents": "(${1:condition}) ? ${2:if_true} : ${3:otherwise}" },
+	{ "trigger": "While",
+		"contents": "While ${1:condition}\n\t$2\nWEnd" },
+	{ "trigger": "With",
+		"contents": "With ${1:object}\n\t$2\nEndWith" }
+]
 }

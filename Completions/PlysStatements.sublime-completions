@@ -1,0 +1,29 @@
+{
+"scope": "source.autoit-plys",
+"completions": [
+	{ "trigger": "do…until",
+		"contents": "do\n\t$1\nuntil ${2:condition}" },
+	{ "trigger": "for…in",
+		"contents": "for ${1:element} in ${2:iterable}\n\t${3:statement}" },
+	{ "trigger": "for…to",
+		"contents": "for ${1:i} = ${2:0} to $3\n\t${4:statement}" },
+	{ "trigger": "for…to…step",
+		"contents": "for ${1:i} = ${2:0} to $3 step ${4:-1}\n\t${5:statement}" },
+	{ "trigger": "func",
+		"contents": "func ${1:name}()\n\t${2:statement}" },
+	{ "trigger": "if…then",
+		"contents": "if $1 then\n\t${2:statement}" },
+	{ "trigger": "if…then…else",
+		"contents": "if $1 then\n\t${2:statement}\nelse\n\t${3:statement}" },
+	{ "trigger": "select",
+		"contents": "select\n\tcase ${1:condition}\n\t\t${2:if_true}" },
+	{ "trigger": "switch",
+		"contents": "switch ${1:expression}\n\tcase ${2:value}\n\t\t${3:if_true}" },
+	{ "trigger": "ternary",
+		"contents": "(${1:condition}) ? ${2:if_true} : ${3:otherwise}" },
+	{ "trigger": "while",
+		"contents": "while ${1:condition}\n\t${2:statement}" },
+	{ "trigger": "with",
+		"contents": "with ${1:object}\n\t${2:statement}" }
+]
+}

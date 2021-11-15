@@ -180,14 +180,14 @@
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>1</key>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>string.parameter.directives.autoit</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?xi) #\b
+			<string>(?xi) ^\s*#\b
 (include-once|notrayicon|onautoitstartregister|requireadmin
 |endregion|forcedef|forceref|ignorefunc|pragma|region)\b(.*)$
 </string>

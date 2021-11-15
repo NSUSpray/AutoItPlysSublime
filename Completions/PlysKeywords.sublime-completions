@@ -1,0 +1,25 @@
+{
+"scope": "source.autoit-plys",
+"completions": [
+	"and",
+	"byref",
+	"const",
+	"continuecase",
+	"continueloop",
+	"default",
+	"dim",
+	"enum",
+	"exit",
+	"exitloop",
+	"False",
+	"global",
+	"local",
+	"not",
+	"Null",
+	"or",
+	"redim",
+	"static",
+	"True",
+	"volatile",
+]
+}

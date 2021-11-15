@@ -133,12 +133,12 @@ contexts:
         2: punctuation.definition.string.begin.import.autoit
         3: punctuation.definition.string.end.import.autoit
     - match: |-
-        '(?xi) #\b
+        (?xi) ^\s*\#\b
         (include-once|notrayicon|onautoitstartregister|requireadmin
-        |endregion|forcedef|forceref|ignorefunc|pragma|region)\b(.*)$'
+        |endregion|forcedef|forceref|ignorefunc|pragma|region)\b(.*)$
       scope: keyword.control.directives.autoit
       captures:
-        1: string.parameter.directives.autoit
+        2: string.parameter.directives.autoit
     - match: (?i:#cs).*$
       push:
         - meta_scope: comment.block.cs.autoit
