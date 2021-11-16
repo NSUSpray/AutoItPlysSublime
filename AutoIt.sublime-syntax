@@ -13,7 +13,8 @@ contexts:
         |step|to|until|wend|while|with)\b
       scope: keyword.control.autoit
     - match: |-
-        (?i)\b(case|else|elseif|endif|endselect|endswitch|if|select|switch|then)\b
+        (?xi) \b
+        (case|else|elseif|endif|endselect|endswitch|if|select|switch|then)\b
       scope: keyword.control.conditional.autoit
     - match: (?i)\bdefault\b
       scope: keyword.other.autoit
@@ -230,14 +231,14 @@ contexts:
   send-keys:
     - match: |-
         (?xi) {\b
-        (appskey|backspace|browser_back|browser_favorites
-        |browser_forward|browser_home|browser_refresh|browser_search
-        |browser_stop|bs|capslock|del|delete|down|end|enter|esc|escape|f1|f10
+        (appskey|backspace|browser_back|browser_favorites|browser_forward
+        |browser_home|browser_refresh|browser_search|browser_stop|bs
+        |capslock\ (on|off|toggle)|del|delete|down|end|enter|esc|escape|f1|f10
         |f11|f12|f2|f3|f4|f5|f6|f7|f8|f9|home|ins|insert|launch_app1
         |launch_app2|launch_mail|launch_media|left|media_next|media_play_pause
-        |media_prev|media_stop|numlock|numpad0|numpad1|numpad2|numpad3|numpad4
-        |numpad5|numpad6|numpad7|numpad8|numpad9|numpadadd|numpaddiv|numpaddot
-        |numpadenter|numpadmult|numpadsub|pause|pgdn|pgup|printscreen|right
-        |scrolllock|sleep|space|tab|up|volume_down|volume_mute|volume_up)
-        (\ [1-9][0-9]*)?\b}
+        |media_prev|media_stop|numlock\ (on|off|toggle)|numpad0|numpad1|numpad2
+        |numpad3|numpad4|numpad5|numpad6|numpad7|numpad8|numpad9|numpadadd
+        |numpaddiv|numpaddot|numpadenter|numpadmult|numpadsub|pause|pgdn|pgup
+        |printscreen|right|scrolllock\ (on|off|toggle)|sleep|space|tab|up
+        |volume_down|volume_mute|volume_up)(\ [1-9][0-9]*)?\b}
       scope: constant.other.send-key.autoit

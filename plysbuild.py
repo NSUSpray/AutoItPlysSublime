@@ -4,29 +4,31 @@ import AutoItPlysSublime.autoitbuild as autoitbuild
 class PlysBuildCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		filepath = self.window.active_view().file_name()
-		settings = sublime.load_settings("AutoIt.sublime-settings")
+		settings = autoitbuild.autoit_settings()
 		autoit_exe_path = settings.get("AutoItExePath")
-		# plys_path = re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
+		# plys_path = \
+		# 	re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
 		plys_path = settings.get("PlysAU3Path")
 		cmd = [autoit_exe_path, plys_path, "/ErrorStdOut", filepath]
-		self.window.run_command("exec",
-			{ "cmd": cmd, "file_regex": r'[^"]*"?([a-zA-Z]:\\.+?\.aup)"? \(([0-9]*)()\) : ==> (.*)$' }
-		)
+		file_regex = \
+			r'[^"]*"?([a-zA-Z]:\\.+?\.aup)"? \(([0-9]*)()\) : ==> (.*)$'
+		self.window.run_command("exec", {"cmd": cmd, "file_regex": file_regex})
 
 class PlysTranslateCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		filepath = self.window.active_view().file_name()
-		settings = sublime.load_settings("AutoIt.sublime-settings")
+		settings = autoitbuild.autoit_settings()
 		autoit_exe_path = settings.get("AutoItExePath")
-		# plys_path = re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
+		# plys_path = \
+		# 	re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
 		plys_path = settings.get("PlysAU3Path")
 		cmd = [autoit_exe_path, plys_path, "/Translate", filepath]
-		self.window.run_command("exec", {"cmd": cmd})
+		file_regex = r'"([a-zA-Z]:\\.+?\.aup\.au3)"$'
+		self.window.run_command("exec", {"cmd": cmd, "file_regex": file_regex})
 
 class PlysHelpCommand(autoitbuild.AutoitHelpCommand):
 	def run(self):
-		self.plys_help_path = \
-			sublime.load_settings("AutoIt.sublime-settings").get("PlysHelpPath")
+		self.plys_help_path = autoitbuild.autoit_settings().get("PlysHelpPath")
 		super().run()
 
 	def make_args(self):
@@ -34,8 +36,7 @@ class PlysHelpCommand(autoitbuild.AutoitHelpCommand):
 
 class PlysContexthelpCommand(autoitbuild.AutoitContexthelpCommand):
 	def run(self, edit):
-		self.plys_help_path = \
-			sublime.load_settings("AutoIt.sublime-settings").get("PlysHelpPath")
+		self.plys_help_path = autoitbuild.autoit_settings().get("PlysHelpPath")
 		super().run(edit)
 
 	def make_args(self, query):
@@ -44,14 +45,16 @@ class PlysContexthelpCommand(autoitbuild.AutoitContexthelpCommand):
 class PlysGetpathsCommand(sublime_plugin.WindowCommand):
 	def __init__(self, window):
 		super().__init__(window)
-		if sublime.load_settings("AutoIt.sublime-settings").get("PlysStatus") == "installed":
+		if autoitbuild.autoit_settings().get("PlysStatus") == "installed":
 			return
 
 		try:
-			autoit_exe_folder = autoitbuild.get_autoit_exe_folder()
+			exe_folder = autoitbuild.autoit_exe_folder()
 		except WindowsError as e:
-			sublime.active_window().run_command("show_panel", {"panel": "console"})
-			print("------------ ERROR: Python exception trying to run following command ------------")
+			sublime.active_window().run_command(
+				"show_panel", {"panel": "console"}
+			)
+			print("[ERROR: Python exception trying to run following command]")
 			print("Error " + str(e))
 			return
 
@@ -60,8 +63,8 @@ class PlysGetpathsCommand(sublime_plugin.WindowCommand):
 			autoitbuild.PACKAGE_FOLDER + "\\AutoIt.sublime-settings"
 		with open(default_settings_path) as f:
 			settings = json.load(f)
-		settings["PlysAU3Path"] = autoit_exe_folder + "\\Plys\\plys.au3"
-		settings["PlysHelpPath"] = autoit_exe_folder + "\\Plys\\Plys.chm"
+		settings["PlysAU3Path"] = exe_folder + "\\Plys\\plys.au3"
+		settings["PlysHelpPath"] = exe_folder + "\\Plys\\Plys.chm"
 		settings["PlysStatus"] = "installed"
 		with open(default_settings_path, "w") as f:
 			json.dump(settings, f, indent="\t")
