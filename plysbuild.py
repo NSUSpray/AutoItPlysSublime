@@ -1,20 +1,14 @@
-import sublime, sublime_plugin
+from __future__ import print_function
+import sublime
+import sublime_plugin
 import AutoItPlysSublime.autoitbuild as autoitbuild
 
-class PlysBuildCommand(sublime_plugin.WindowCommand):
-	def run(self):
-		filepath = self.window.active_view().file_name()
-		settings = autoitbuild.autoit_settings()
-		autoit_exe_path = settings.get("AutoItExePath")
-		# plys_path = \
-		# 	re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
-		plys_path = settings.get("PlysAU3Path")
-		cmd = [autoit_exe_path, plys_path, "/ErrorStdOut", filepath]
-		file_regex = \
-			r'[^"]*"?([a-zA-Z]:\\.+?\.aup)"? \(([0-9]*)()\) : ==> (.*)$'
-		self.window.run_command("exec", {"cmd": cmd, "file_regex": file_regex})
 
-class PlysTranslateCommand(sublime_plugin.WindowCommand):
+class PlysBuildCommand(sublime_plugin.WindowCommand):
+
+	options = ["/ErrorStdOut", "/Rapid"]
+	file_regex = r'[^"]*"?([a-zA-Z]:\\.+?\.aup)"? \(([0-9]*)()\) : ==> (.*)$'
+
 	def run(self):
 		filepath = self.window.active_view().file_name()
 		settings = autoitbuild.autoit_settings()
@@ -22,11 +16,24 @@ class PlysTranslateCommand(sublime_plugin.WindowCommand):
 		# plys_path = \
 		# 	re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
 		plys_path = settings.get("PlysAU3Path")
-		cmd = [autoit_exe_path, plys_path, "/Translate", filepath]
-		file_regex = r'"([a-zA-Z]:\\.+?\.aup\.au3)"$'
-		self.window.run_command("exec", {"cmd": cmd, "file_regex": file_regex})
+		cmd = [autoit_exe_path, plys_path] + self.options + [filepath]
+		self.window.run_command("exec",
+			{"cmd": cmd, "file_regex": self.file_regex})
+
+
+class PlysRetranslateRunCommand(PlysBuildCommand):
+
+	options = ["/ErrorStdOut"]
+
+
+class PlysTranslateCommand(PlysBuildCommand):
+
+	options = ["/Translate"]
+	file_regex = r'"([a-zA-Z]:\\.+?\.aup\.au3)"$'
+
 
 class PlysHelpCommand(autoitbuild.AutoitHelpCommand):
+
 	def run(self):
 		self.plys_help_path = autoitbuild.autoit_settings().get("PlysHelpPath")
 		super().run()
@@ -34,7 +41,9 @@ class PlysHelpCommand(autoitbuild.AutoitHelpCommand):
 	def make_args(self):
 		return super().make_args() + ["Introduction", self.plys_help_path]
 
+
 class PlysContexthelpCommand(autoitbuild.AutoitContexthelpCommand):
+
 	def run(self, edit):
 		self.plys_help_path = autoitbuild.autoit_settings().get("PlysHelpPath")
 		super().run(edit)
@@ -42,7 +51,9 @@ class PlysContexthelpCommand(autoitbuild.AutoitContexthelpCommand):
 	def make_args(self, query):
 		return super().make_args(query) + [self.plys_help_path]
 
+
 class PlysGetpathsCommand(sublime_plugin.WindowCommand):
+	
 	def __init__(self, window):
 		super().__init__(window)
 		if autoitbuild.autoit_settings().get("PlysStatus") == "installed":

@@ -31,7 +31,7 @@ contexts:
         (activewin|casesense|chrsplit|cmdline|endnotstart|entiresplit
         |nocasesense|nocasesensebasic|nocount|rearray|rearrayfull|rearrayglobal
         |rearrayglobalfull|rematch|stripall|stripleading|stripspaces
-        |striptrailing|ucs2|utf16)\b|\W)
+        |striptrailing|ucs2|utf16)\b|(?!\w))
       scope: variable.language.autoit.plys
       captures:
         1: punctuation.definition.variable.autoit.plys

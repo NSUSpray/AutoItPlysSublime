@@ -62,7 +62,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?i)^\s*(?:endfunc|(func)\s+([a-zA-Z]\w*))\b
+			<string>(?i)^\s*(?:endfunc|(func)\s+([a-zA-Z_]\w*))\b
 </string>
 			<key>name</key>
 			<string>storage.type.function.autoit keyword.declaration.function.autoit</string>

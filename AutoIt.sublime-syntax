@@ -22,7 +22,7 @@ contexts:
       scope: storage.type.autoit
     - match: (?i)\benum\b
       scope: storage.type.enum.autoit keyword.declaration.enum.autoit
-    - match: '(?i)^\s*(?:endfunc|(func)\s+([a-zA-Z]\w*))\b'
+    - match: '(?i)^\s*(?:endfunc|(func)\s+([a-zA-Z_]\w*))\b'
       scope: storage.type.function.autoit keyword.declaration.function.autoit
       captures:
         1: keyword.declaration.function.autoit

@@ -3,6 +3,10 @@
 	"selector": "source.autoit-plys",
 	"variants": [
 		{
+			"name": "Retranslate and Run",
+			"target": "plys_retranslate_run"
+		},
+		{
 			"name": "Translate to AutoIt",
 			"target": "plys_translate"
 		}

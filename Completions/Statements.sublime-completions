@@ -10,7 +10,7 @@
 	{ "trigger": "For…To…Step",
 		"contents": "For \\$${1:i} = ${2:0} To $3 Step ${4:-1}\n\t$5\nNext" },
 	{ "trigger": "Func",
-		"contents": "Func ${1:name}()\n\t$2\nEndFunc" },
+		"contents": "Func ${1:name}($2)\n\t$3\nEndFunc" },
 	{ "trigger": "If…Then",
 		"contents": "If $1 Then\n\t$2\nEndIf" },
 	{ "trigger": "If…Then…Else",

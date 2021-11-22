@@ -1,28 +1,55 @@
 from __future__ import print_function
-import sublime, sublime_plugin
-import subprocess
 import os
+import subprocess
+import sublime
+import sublime_plugin
 
 PACKAGE_FOLDER = sublime.packages_path() + "\\AutoItPlysSublime"
 
+
+def autoit_settings():
+	return sublime.load_settings("AutoIt.sublime-settings")
+
+
+def autoit_exe_folder():
+	import winreg
+
+	def get_in_branch(branch_bitness):
+		registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
+			r"SOFTWARE\AutoIt v3\AutoIt", 0,
+			winreg.KEY_READ | branch_bitness)
+		value, regtype = winreg.QueryValueEx(registry_key, "InstallDir")
+		winreg.CloseKey(registry_key)
+		return value
+
+	try:
+		return get_in_branch(winreg.KEY_WOW64_32KEY)
+	except WindowsError:
+		return get_in_branch(winreg.KEY_WOW64_64KEY)
+
+
 # The autoitbuild command is called as target by AutoIt.sublime-build
 class AutoitBuildCommand(sublime_plugin.WindowCommand):
+	
+	processor_path = autoit_settings().get("AutoItExePath")
+	file_regex = \
+		r'[^"]*"?([a-zA-Z]:\\.+?\.au3)"? \(([0-9]*)()\) : ==> (.*?)\.: ?$'
+	
 	def run(self):
 		filepath = self.window.active_view().file_name()
-		autoit_exe_path = autoit_settings().get("AutoItExePath")
-		cmd = [autoit_exe_path, "/ErrorStdOut", filepath]
-		file_regex = \
-			r'[^"]*"?([a-zA-Z]:\\.+?\.au3)"? \(([0-9]*)()\) : ==> (.*?)\.: ?$'
-		self.window.run_command("exec", {"cmd": cmd, "file_regex": file_regex})
+		cmd = [self.processor_path, "/ErrorStdOut", filepath]
+		self.window.run_command("exec",
+			{"cmd": cmd, "file_regex": self.file_regex})
 
-class AutoitCompileCommand(sublime_plugin.WindowCommand):
-	def run(self):
-		filepath = self.window.active_view().file_name()
-		autoit_compiler_path = autoit_settings().get("AutoItCompilerPath")
-		cmd = [autoit_compiler_path, "/in", filepath]
-		self.window.run_command("exec", {"cmd": cmd})
+
+class AutoitCompileCommand(AutoitBuildCommand):
+
+	processor_path = autoit_settings().get("AutoItCompilerPath")
+	file_regex = ""
+
 
 class AutoitTidyCommand(sublime_plugin.WindowCommand):
+
 	def run(self):
 		self.window.run_command("save")
 		filepath = self.window.active_view().file_name()
@@ -54,7 +81,9 @@ class AutoitTidyCommand(sublime_plugin.WindowCommand):
 			print("Error " + str(e))
 			sublime.status_message("### EXCEPTION: " + str(e))
 
+
 class AutoitIncludehelperCommand(sublime_plugin.WindowCommand):
+
 	def run(self):
 		self.window.run_command("save")
 
@@ -86,7 +115,9 @@ class AutoitIncludehelperCommand(sublime_plugin.WindowCommand):
 			print(autoit_include_cmd)
 			print("Error " + str(e))
 
+
 class AutoitWindowinfoCommand(sublime_plugin.WindowCommand):
+
 	def run(self):
 		autoit_info_path = autoit_settings().get("AutoItInfoPath")
 
@@ -99,7 +130,9 @@ class AutoitWindowinfoCommand(sublime_plugin.WindowCommand):
 			print("[ERROR: Python exception trying to run following command]")
 			print("Error " + str(e))
 
+
 class AutoitHelpCommand(sublime_plugin.WindowCommand):
+
 	def run(self):
 		self.autoit_help_path = autoit_settings().get("AutoItHelpPath")
 
@@ -115,7 +148,9 @@ class AutoitHelpCommand(sublime_plugin.WindowCommand):
 	def make_args(self):
 		return [self.autoit_help_path]
 
+
 class AutoitContexthelpCommand(sublime_plugin.TextCommand):
+
 	def run(self, edit):
 		self.autoit_help_path = autoit_settings().get("AutoItHelpPath")
 		for region in self.view.sel():
@@ -137,7 +172,9 @@ class AutoitContexthelpCommand(sublime_plugin.TextCommand):
 	def make_args(self, query):
 		return [self.autoit_help_path, query]
 
+
 class AutoItGetPathsCommand(sublime_plugin.WindowCommand):
+
 	def __init__(self, window):
 		super().__init__(window)
 		if autoit_settings().get("Status") == "installed":
@@ -172,20 +209,3 @@ class AutoItGetPathsCommand(sublime_plugin.WindowCommand):
 
 	def run(self):
 		pass
-
-def autoit_settings():
-	return sublime.load_settings("AutoIt.sublime-settings")
-
-def autoit_exe_folder():
-		import winreg
-		def get_in_branch(branch_bitness):
-			registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
-				r"SOFTWARE\AutoIt v3\AutoIt", 0,
-				winreg.KEY_READ | branch_bitness)
-			value, regtype = winreg.QueryValueEx(registry_key, "InstallDir")
-			winreg.CloseKey(registry_key)
-			return value
-		try:
-			return get_in_branch(winreg.KEY_WOW64_32KEY)
-		except WindowsError:
-			return get_in_branch(winreg.KEY_WOW64_64KEY)
