@@ -1,0 +1,31 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: AutoIt Build
+scope: source.autoit-build
+extends: AutoIt.sublime-syntax
+contexts:
+  main:
+    - match: '(").*?(")\s(\()\d+(\))\s((: ==>)\s)?.*?(\.:)\n'
+      captures:
+        1: comment.line.autoit-build
+        2: comment.line.autoit-build
+        3: comment.line.autoit-build
+        4: comment.line.autoit-build
+        6: comment.line.autoit-build
+        7: comment.line.autoit-build
+      push: code
+  code:
+    - match: \n
+      push: error-mark
+      pop: true
+    - include: AutoIt.sublime-syntax
+      pop: true
+  error-mark:
+    - match: (.+)\^\s(ERROR)\n
+      captures:
+        1: comment.line.autoit-build
+        2: comment.line.autoit-build
+      pop: true
+    - match: \[.+?\]\n
+      pop: true

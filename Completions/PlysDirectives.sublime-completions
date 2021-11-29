@@ -2,11 +2,10 @@
 "scope": "source.autoit-plys",
 "completions": [
 	"#plys dollarprefix",
-	"#plys lambda",
 	"#plys noconst",
 	"#plys noimport",
 	"#plys noindent",
-	"#plys nostdio",
+	"#plys nolambda",
 	"#plys nosynonyms",
 ]
 }

@@ -7,18 +7,20 @@ import AutoItPlysSublime.autoitbuild as autoitbuild
 class PlysBuildCommand(sublime_plugin.WindowCommand):
 
 	options = ["/ErrorStdOut", "/Rapid"]
-	file_regex = r'[^"]*"?([a-zA-Z]:\\.+?\.aup)"? \(([0-9]*)()\) : ==> (.*)$'
+	file_regex = r'"(.*?)" \((\d*)()\) : ==> (.*)\.:$'
+	syntax = "AutoIt Build.sublime-syntax"
 
 	def run(self):
 		filepath = self.window.active_view().file_name()
 		settings = autoitbuild.autoit_settings()
 		autoit_exe_path = settings.get("AutoItExePath")
 		# plys_path = \
-		# 	re.sub(r"(.*\\).*$", r"\1Plys\\plys.au3", autoit_exe_path)
+		# 	re.sub(r"(.*\\).*$", r"\1Plys\\plys\.aup\.au3", autoit_exe_path)
 		plys_path = settings.get("PlysAU3Path")
 		cmd = [autoit_exe_path, plys_path] + self.options + [filepath]
-		self.window.run_command("exec",
-			{"cmd": cmd, "file_regex": self.file_regex})
+		self.window.run_command("exec", {
+			"cmd": cmd, "file_regex": self.file_regex, "syntax" : self.syntax
+		})
 
 
 class PlysRetranslateRunCommand(PlysBuildCommand):
@@ -30,6 +32,7 @@ class PlysTranslateCommand(PlysBuildCommand):
 
 	options = ["/Translate"]
 	file_regex = r'"([a-zA-Z]:\\.+?\.aup\.au3)"$'
+	syntax = ""
 
 
 class PlysHelpCommand(autoitbuild.AutoitHelpCommand):
@@ -74,7 +77,7 @@ class PlysGetpathsCommand(sublime_plugin.WindowCommand):
 			autoitbuild.PACKAGE_FOLDER + "\\AutoIt.sublime-settings"
 		with open(default_settings_path) as f:
 			settings = json.load(f)
-		settings["PlysAU3Path"] = exe_folder + "\\Plys\\plys.au3"
+		settings["PlysAU3Path"] = exe_folder + "\\Plys\\plys.aup.au3"
 		settings["PlysHelpPath"] = exe_folder + "\\Plys\\Plys.chm"
 		settings["PlysStatus"] = "installed"
 		with open(default_settings_path, "w") as f:

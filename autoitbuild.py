@@ -34,18 +34,21 @@ class AutoitBuildCommand(sublime_plugin.WindowCommand):
 	processor_path = autoit_settings().get("AutoItExePath")
 	file_regex = \
 		r'[^"]*"?([a-zA-Z]:\\.+?\.au3)"? \(([0-9]*)()\) : ==> (.*?)\.: ?$'
+	syntax = "AutoIt Build.sublime-syntax"
 	
 	def run(self):
 		filepath = self.window.active_view().file_name()
 		cmd = [self.processor_path, "/ErrorStdOut", filepath]
-		self.window.run_command("exec",
-			{"cmd": cmd, "file_regex": self.file_regex})
+		self.window.run_command("exec", {
+			"cmd": cmd, "file_regex": self.file_regex, "syntax" : self.syntax
+		})
 
 
 class AutoitCompileCommand(AutoitBuildCommand):
 
 	processor_path = autoit_settings().get("AutoItCompilerPath")
 	file_regex = ""
+	syntax = ""
 
 
 class AutoitTidyCommand(sublime_plugin.WindowCommand):
