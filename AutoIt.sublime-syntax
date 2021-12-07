@@ -184,6 +184,7 @@ contexts:
         - match: '""'
           scope: constant.character.escape.autoit
         - include: send-keys
+        - include: send-modifiers
         - include: restrict-newlines
     - match: (')
       captures:
@@ -198,7 +199,7 @@ contexts:
           scope: constant.character.escape.autoit
         - include: send-keys
         - include: restrict-newlines
-    - match: '(\$)[a-zA-Z_][a-zA-Z0-9_]*'
+    - match: '(\$)\w+'
       scope: variable.other.autoit
       captures:
         1: punctuation.definition.variable.autoit
@@ -230,15 +231,43 @@ contexts:
       scope: invalid.illegal.string.eol.autoit
   send-keys:
     - match: |-
-        (?xi) {\b
-        (appskey|backspace|browser_back|browser_favorites|browser_forward
-        |browser_home|browser_refresh|browser_search|browser_stop|bs
-        |capslock\ (on|off|toggle)|del|delete|down|end|enter|esc|escape|f1|f10
-        |f11|f12|f2|f3|f4|f5|f6|f7|f8|f9|home|ins|insert|launch_app1
-        |launch_app2|launch_mail|launch_media|left|media_next|media_play_pause
-        |media_prev|media_stop|numlock\ (on|off|toggle)|numpad0|numpad1|numpad2
-        |numpad3|numpad4|numpad5|numpad6|numpad7|numpad8|numpad9|numpadadd
-        |numpaddiv|numpaddot|numpadenter|numpadmult|numpadsub|pause|pgdn|pgup
-        |printscreen|right|scrolllock\ (on|off|toggle)|sleep|space|tab|up
-        |volume_down|volume_mute|volume_up)(\ [1-9][0-9]*)?\b}
+        (?xi) ({) (?:
+          (
+            (?:!|\#|\+|\^|\{|}|appskey|asc\s(\d+|0x[0-9A-Fa-f]+)
+              |backspace|break
+              |browser_(?:back|favorites|forward|home|refresh|search|stop)|bs
+              |del|delete|down|end|enter
+              |esc|escape|f[1-9]|f1[0-2]|home|ins|insert|lalt
+              |launch_(?:app1|app2|mail|media)|lctrl|left|lshift
+              |media_(?:next|play_pause|prev|stop)
+              |numpad(?:\d|add|div|dot|enter|mult|sub)|oem_102|pause|pgdn|pgup
+              |printscreen|ralt|rctrl|right|rshift
+              |sleep|space|tab|up
+              |volume_(?:down|mute|up)
+            )(\sup|\sdown)?
+            | (?:alt|[lr]win)(?:down|up)?
+            |(?:ctrl|shift)(?:down|up)
+            |(?:caps|num|scroll)lock(\son|\soff|\stoggle)?
+          )|\S
+        )(\s0|\s[1-9]\d*)? (})
+      captures:
+        1: comment.line.send-key-begin.autoit
+        2: constant.other.send-key.autoit
+        3: constant.numeric.ascii-code.send-key.autoit
+        4: constant.other.direction.send-key.autoit
+        5: constant.other.direction.send-key.autoit
+        6: constant.numeric.count.send-key.autoit
+        7: comment.line.send-key-end.autoit
+  send-modifiers:
+    - match: |-
+        (?x)
+        (\^|!|\+|\#
+        |\^!|\^\+|\^\#|!\^|!\+|!\#|\+\^|\+!|\+\#|\#\^|\#!|\#\+
+        |\^!\+|\^!\#|\^\+!|\^\+\#|\^\#!|\^\#\+|!\^\+|!\^\#
+        |!\+\^|!\+\#|!\#\^|!\#\+|\+\^!|\+\^\#|\+!\^|\+!\#
+        |\+\#\^|\+\#!|\#\^!|\#\^\+|\#!\^|\#!\+|\#\+\^|\#\+!
+        |\^!\+\#|\^!\#\+|\^\+!\#|\^\+\#!|\^\#!\+|\^\#\+!|!\^\+\#|!\^\#\+
+        |!\+\^\#|!\+\#\^|!\#\^\+|!\#\+\^|\+\^!\#|\+\^\#!|\+!\^\#|\+!\#\^
+        |\+\#\^!|\+\#!\^|\#\^!\+|\#\^\+!|\#!\^\+|\#!\+\^|\#\+\^!|\#\+!\^)
+        (?!\^|!|\+|\#)
       scope: constant.other.send-key.autoit

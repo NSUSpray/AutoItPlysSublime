@@ -20,7 +20,7 @@
 
 ## Key Bindings
 If you have the default Sublime keybindings intact, then:
-* <kbd>Ctrl+B</kbd> will run/compile/translate the current file (with AutoIt3.exe, Aut2Exe.exe or plys.au3)
+* <kbd>Ctrl+B</kbd> will run/compile/translate the current file (with AutoIt3.exe, Aut2Exe.exe or plys.aup.au3)
 * <kbd>Ctrl+Shift+B</kbd> will change the build mode (between run/compile/translate)
 * <kbd>F12</kbd> will go to definition of the function by its name under cursor
 * <kbd>Ctrl+R</kbd> will show list of the all functions in current file

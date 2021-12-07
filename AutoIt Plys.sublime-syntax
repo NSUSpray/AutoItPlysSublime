@@ -8,7 +8,6 @@ scope: source.autoit-plys
 extends: AutoIt.sublime-syntax
 contexts:
   main:
-    - include: AutoIt.sublime-syntax
     - match: |-
         (?xi) \b
         (activate|active|add|addcr|binsearch|changedir|coldelete|colinsert
@@ -51,3 +50,4 @@ contexts:
       scope: keyword.operator.assignment.autoit.plys
     - match: \.
       scope: keyword.operator.arithmetic.autoit.plys
+    - include: AutoIt.sublime-syntax

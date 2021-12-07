@@ -4,6 +4,7 @@
 name: AutoIt Build
 scope: source.autoit-build
 extends: AutoIt.sublime-syntax
+hidden: true
 contexts:
   main:
     - match: '(").*?(")\s(\()\d+(\))\s((: ==>)\s)?.*?(\.:)\n'
