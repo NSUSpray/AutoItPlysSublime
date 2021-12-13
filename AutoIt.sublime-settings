@@ -2,7 +2,7 @@
 	"AutoItExePath": "",
 	"AutoItCompilerPath": "",
 	"TidyExePath": "",
-	"IncludeHelperAU3Path": "{PACKAGE_PATH}\\AutoItPlysSublime\\Include_Helper.au3",
+	"IncludeHelperAU3Path": "{PACKAGE_PATH}\\AutoIt Plys\\Include_Helper.au3",
 	"AutoItInfoPath": "",
 	"AutoItHelpPath": "",
 	"word_separators": "./\\()\"'-:,.;<>~!%^&*|+=[]{}`~?"

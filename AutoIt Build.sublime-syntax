@@ -7,14 +7,12 @@ extends: AutoIt.sublime-syntax
 hidden: true
 contexts:
   main:
-    - match: '(").*?(")\s(\()\d+(\))\s((: ==>)\s)?.*?(\.:)\n'
+    - match: '(".*?" \(\d+\) :)( ==> )?.*?\.(:\n)'
+      scope: constant.numeric.autoit-build
       captures:
-        1: comment.line.autoit-build
-        2: comment.line.autoit-build
-        3: comment.line.autoit-build
-        4: comment.line.autoit-build
-        6: comment.line.autoit-build
-        7: comment.line.autoit-build
+        1: string.quoted.double.autoit-build
+        2: keyword.other.autoit-build
+        3: keyword.other.autoit-build
       push: code
   code:
     - match: \n

@@ -4,11 +4,40 @@ import subprocess
 import sublime
 import sublime_plugin
 
-PACKAGE_FOLDER = sublime.packages_path() + "\\AutoItPlysSublime"
+PACKAGE_FOLDER = os.path.abspath(os.path.dirname(__file__))
 
 
 def autoit_settings():
 	return sublime.load_settings("AutoIt.sublime-settings")
+
+
+def install():
+	try:
+		exe_folder = autoit_exe_folder()
+	except WindowsError as e:
+		sublime.active_window().run_command(
+			"show_panel", {"panel": "console"}
+		)
+		print("[ERROR: Python exception trying to run following command]")
+		print("Error " + str(e))
+		return
+
+	import json
+	default_settings_path = PACKAGE_FOLDER + "\\AutoIt.sublime-settings"
+	with open(default_settings_path) as f:
+		settings = json.load(f)
+	settings["AutoItExePath"] = exe_folder + "\\AutoIt3.exe"
+	settings["AutoItCompilerPath"] = exe_folder + "\\Aut2Exe\\Aut2exe.exe"
+	settings["TidyExePath"] = exe_folder + "\\SciTE\\Tidy\\Tidy.exe"
+	import platform
+	is_os_64bit = platform.machine().endswith('64')
+	suffix = "_x64" if is_os_64bit else ""
+	settings["AutoItInfoPath"] = \
+		exe_folder + "\\Au3Info" + suffix + ".exe"
+	settings["AutoItHelpPath"] = exe_folder + "\\AutoIt3Help.exe"
+	settings["Status"] = "installed"
+	with open(default_settings_path, "w") as f:
+		json.dump(settings, f, indent="\t")
 
 
 def autoit_exe_folder():
@@ -31,14 +60,15 @@ def autoit_exe_folder():
 # The autoitbuild command is called as target by AutoIt.sublime-build
 class AutoitBuildCommand(sublime_plugin.WindowCommand):
 	
-	processor_path = autoit_settings().get("AutoItExePath")
+	processor_path_key = "AutoItExePath"
 	file_regex = \
 		r'[^"]*"?([a-zA-Z]:\\.+?\.au3)"? \(([0-9]*)()\) : ==> (.*?)\.: ?$'
 	syntax = "AutoIt Build.sublime-syntax"
 	
 	def run(self):
-		filepath = self.window.active_view().file_name()
-		cmd = [self.processor_path, "/ErrorStdOut", filepath]
+		processor_path = autoit_settings().get(self.processor_path_key)
+		filepath = self.window.active_view().file_name() or " "
+		cmd = [processor_path, "/ErrorStdOut", filepath]
 		self.window.run_command("exec", {
 			"cmd": cmd, "file_regex": self.file_regex, "syntax" : self.syntax
 		})
@@ -46,7 +76,7 @@ class AutoitBuildCommand(sublime_plugin.WindowCommand):
 
 class AutoitCompileCommand(AutoitBuildCommand):
 
-	processor_path = autoit_settings().get("AutoItCompilerPath")
+	processor_path_key = "AutoItCompilerPath"
 	file_regex = ""
 	syntax = ""
 
@@ -55,7 +85,7 @@ class AutoitTidyCommand(sublime_plugin.WindowCommand):
 
 	def run(self):
 		self.window.run_command("save")
-		filepath = self.window.active_view().file_name()
+		filepath = self.window.active_view().file_name() or " "
 		tidy_exe_path = autoit_settings().get("TidyExePath")
 		tidycmd = [tidy_exe_path, filepath]
 		try:
@@ -90,7 +120,7 @@ class AutoitIncludehelperCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		self.window.run_command("save")
 
-		filepath = self.window.active_view().file_name()
+		filepath = self.window.active_view().file_name() or " "
 		settings = autoit_settings()
 		autoit_exe_path = settings.get("AutoItExePath")
 		autoit_include_folder = os.path.dirname(autoit_exe_path) + "\\Include"
@@ -176,39 +206,5 @@ class AutoitContexthelpCommand(sublime_plugin.TextCommand):
 		return [self.autoit_help_path, query]
 
 
-class AutoItGetPathsCommand(sublime_plugin.WindowCommand):
-
-	def __init__(self, window):
-		super().__init__(window)
-		if autoit_settings().get("Status") == "installed":
-			return
-
-		try:
-			exe_folder = autoit_exe_folder()
-		except WindowsError as e:
-			sublime.active_window().run_command(
-				"show_panel", {"panel": "console"}
-			)
-			print("[ERROR: Python exception trying to run following command]")
-			print("Error " + str(e))
-			return
-
-		import json
-		default_settings_path = PACKAGE_FOLDER + "\\AutoIt.sublime-settings"
-		with open(default_settings_path) as f:
-			settings = json.load(f)
-		settings["AutoItExePath"] = exe_folder + "\\AutoIt3.exe"
-		settings["AutoItCompilerPath"] = exe_folder + "\\Aut2Exe\\Aut2exe.exe"
-		settings["TidyExePath"] = exe_folder + "\\SciTE\\Tidy\\Tidy.exe"
-		import platform
-		is_os_64bit = platform.machine().endswith('64')
-		suffix = "_x64" if is_os_64bit else ""
-		settings["AutoItInfoPath"] = \
-			exe_folder + "\\Au3Info" + suffix + ".exe"
-		settings["AutoItHelpPath"] = exe_folder + "\\AutoIt3Help.exe"
-		settings["Status"] = "installed"
-		with open(default_settings_path, "w") as f:
-			json.dump(settings, f, indent="\t")
-
-	def run(self):
-		pass
+if autoit_settings().get("Status") != "installed":
+	install()

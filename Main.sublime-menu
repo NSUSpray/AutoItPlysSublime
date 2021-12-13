@@ -34,7 +34,7 @@
 							{
 								"command": "edit_settings",
 								"args": {
-									"base_file": "${packages}/AutoItPlysSublime/AutoIt.sublime-settings",
+									"base_file": "${packages}/AutoIt Plys/AutoIt.sublime-settings",
 									"default": "{\n\t$0\n}\n"
 								},
 								"caption": "Settings"
@@ -42,7 +42,7 @@
 							{
 								"command": "edit_settings",
 								"args": {
-									"base_file": "${packages}/AutoItPlysSublime/Default ($platform).sublime-keymap",
+									"base_file": "${packages}/AutoIt Plys/Default (${platform}).sublime-keymap",
 									"default": "[\n\t$0\n]\n"
 								},
 								"caption": "Key Bindings"
