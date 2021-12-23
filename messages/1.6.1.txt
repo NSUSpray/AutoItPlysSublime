@@ -1,0 +1,4 @@
+Fixed: compile command fails
+Added: CamelCase (Plys-style) completions for Plys
+Added: screenshots in README illustrating functions
+Added: messages after upgrades

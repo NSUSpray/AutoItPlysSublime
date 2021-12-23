@@ -1,5 +1,5 @@
 {
-"scope": "(source.autoit|source.autoit-plys) & string.quoted",
+"scope": "source.autoit & string.quoted",
 "completions": [
 	"ALT", 
 	"ALTDOWN", "ALTUP",

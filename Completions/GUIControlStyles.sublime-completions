@@ -1,5 +1,5 @@
 {
-"scope": "source.autoit, source.autoit-plys",
+"scope": "source.autoit",
 "completions": [
 	"WS_BORDER",
 	"WS_POPUP",

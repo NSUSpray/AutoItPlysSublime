@@ -61,6 +61,7 @@ def autoit_exe_folder():
 class AutoitBuildCommand(sublime_plugin.WindowCommand):
 	
 	processor_path_key = "AutoItExePath"
+	options = ["/ErrorStdOut"]
 	file_regex = \
 		r'[^"]*"?([a-zA-Z]:\\.+?\.au3)"? \(([0-9]*)()\) : ==> (.*?)\.: ?$'
 	syntax = "AutoIt Build.sublime-syntax"
@@ -68,7 +69,7 @@ class AutoitBuildCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		processor_path = autoit_settings().get(self.processor_path_key)
 		filepath = self.window.active_view().file_name() or " "
-		cmd = [processor_path, "/ErrorStdOut", filepath]
+		cmd = [processor_path] + self.options + [filepath]
 		self.window.run_command("exec", {
 			"cmd": cmd, "file_regex": self.file_regex, "syntax" : self.syntax
 		})
@@ -77,6 +78,7 @@ class AutoitBuildCommand(sublime_plugin.WindowCommand):
 class AutoitCompileCommand(AutoitBuildCommand):
 
 	processor_path_key = "AutoItCompilerPath"
+	options = ["/in"]
 	file_regex = ""
 	syntax = ""
 

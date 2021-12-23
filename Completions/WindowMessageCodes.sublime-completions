@@ -1,5 +1,5 @@
 {
-"scope": "source.autoit, source.autoit-plys",
+"scope": "source.autoit",
 "completions": [
 	"WM_ACTIVATE",
 	"WM_ACTIVATEAPP",
